@@ -39,14 +39,14 @@ public class LeistungserbringerEntity {
 
         LeistungserbringerEntity that = (LeistungserbringerEntity) o;
 
-        if (VPNRT != null ? !VPNRT.equals(that.VPNRT) : that.VPNRT != null) return false;
-        return ZUNUT != null ? ZUNUT.equals(that.ZUNUT) : that.ZUNUT == null;
+        if (!erbringer_id.equals(that.erbringer_id)) return false;
+        return ZUNUT.equals(that.ZUNUT);
     }
 
     @Override
     public int hashCode() {
-        int result = VPNRT != null ? VPNRT.hashCode() : 0;
-        result = 31 * result + (ZUNUT != null ? ZUNUT.hashCode() : 0);
+        int result = erbringer_id.hashCode();
+        result = 31 * result + ZUNUT.hashCode();
         return result;
     }
 }

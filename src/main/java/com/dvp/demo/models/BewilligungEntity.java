@@ -63,9 +63,9 @@ public class BewilligungEntity {
 
     @Override
     public int hashCode() {
-        long result = bewilligungs_id;
-        result = 31 * result + (BDAT != null ? BDAT.hashCode() : 0);
-        result = 31 * result + (BEWNR != null ? BEWNR.hashCode() : 0);
+        int result = (int) (bewilligungs_id ^ (bewilligungs_id >>> 32));
+        result = 31 * result + BDAT.hashCode();
+        result = 31 * result + BEWNR.hashCode();
         result = 31 * result + VOID;
         return result;
     }

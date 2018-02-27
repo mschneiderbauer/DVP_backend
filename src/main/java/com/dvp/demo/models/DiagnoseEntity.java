@@ -78,11 +78,11 @@ public class DiagnoseEntity {
 
     @Override
     public int hashCode() {
-        long result = diagnoseId;
-        result = 31 * result + (DATD != null ? DATD.hashCode() : 0);
-        result = 31 * result + (DIAGN != null ? DIAGN.hashCode() : 0);
+        int result = (int) (diagnoseId ^ (diagnoseId >>> 32));
+        result = 31 * result + DATD.hashCode();
+        result = 31 * result + DIAGN.hashCode();
         result = 31 * result + VOID;
-        result = 31 * result + (verordnungEntities != null ? verordnungEntities.hashCode() : 0);
+        result = 31 * result + verordnungEntities.hashCode();
         return result;
     }
 }

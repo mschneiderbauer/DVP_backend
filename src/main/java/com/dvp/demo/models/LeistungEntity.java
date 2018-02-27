@@ -75,10 +75,10 @@ public class LeistungEntity {
 
     @Override
     public int hashCode() {
-        long result = LID;
-        result = 31 * result + (DATL != null ? DATL.hashCode() : 0);
+        int result = (int) (LID ^ (LID >>> 32));
+        result = 31 * result + DATL.hashCode();
         result = 31 * result + ANZ;
-        result = 31 * result + (POSNR != null ? POSNR.hashCode() : 0);
+        result = 31 * result + POSNR.hashCode();
         result = 31 * result + VOID;
         return result;
     }
