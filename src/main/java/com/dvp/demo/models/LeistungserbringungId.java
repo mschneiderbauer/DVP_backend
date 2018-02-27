@@ -5,10 +5,10 @@ import java.io.Serializable;
 
 @Embeddable
 public class LeistungserbringungId implements Serializable {
-    @Column(name = "post_id")
+    @Column(name = "vo_id")
     private int VOID;
 
-    @Column(name = "tag_id")
+    @Column(name = "vpnrt")
     private String VPNRT;
 
     public LeistungserbringungId() {

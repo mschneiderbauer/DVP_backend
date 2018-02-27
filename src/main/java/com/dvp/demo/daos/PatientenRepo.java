@@ -1,4 +1,4 @@
-package com.dvp.demo.controllers;
+package com.dvp.demo.daos;
 
 import com.dvp.demo.models.PatientenEntity;
 import com.dvp.demo.models.PatientenId;

@@ -1,4 +1,4 @@
-package com.dvp.demo.controllers;
+package com.dvp.demo.daos;
 
 import com.dvp.demo.models.LeistungserbringungEntity;
 import com.dvp.demo.models.LeistungserbringungId;

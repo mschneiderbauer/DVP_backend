@@ -5,21 +5,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Leistungserbringer", schema = "dvpdatabase", catalog = "")
 public class LeistungserbringerEntity {
-    @Id
-    public String VPNRT;
+    @EmbeddedId
+    public LeistungserbringerId erbringer_id;
 
     private String ZUNUT;
 
     public LeistungserbringerEntity() {
     }
 
-    public LeistungserbringerEntity(String VPNRT, String ZUNUT) {
-        this.VPNRT = VPNRT;
-        this.ZUNUT = ZUNUT;
+    public LeistungserbringerId getErbringer_id() {
+        return erbringer_id;
     }
 
-    public String getVPNRT() {
-        return VPNRT;
+    public void setErbringer_id(LeistungserbringerId erbringer_id) {
+        this.erbringer_id = erbringer_id;
     }
 
     @Basic

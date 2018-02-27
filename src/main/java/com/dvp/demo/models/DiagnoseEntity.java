@@ -8,7 +8,7 @@ import java.sql.Date;
 public class DiagnoseEntity {
 
     @Id
-    @GeneratedValue //vielleicht
+    //@GeneratedValue //vielleicht
     public long diagnoseId;
 
     private Date DATD;
@@ -16,12 +16,6 @@ public class DiagnoseEntity {
     private int VOID;
 
     public DiagnoseEntity() {
-    }
-
-    public DiagnoseEntity(Date DATD, String DIAGN, int VOID) {
-        this.DATD = DATD;
-        this.DIAGN = DIAGN;
-        this.VOID = VOID;
     }
 
     public long getDiagnoseId() {

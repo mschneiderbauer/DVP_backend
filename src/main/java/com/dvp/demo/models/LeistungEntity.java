@@ -15,17 +15,6 @@ public class LeistungEntity {
     private String POSNR;
     private int VOID;
 
-    public LeistungEntity() {
-    }
-
-    public LeistungEntity(int LID, Date DATL, int ANZ, String POSNR, int VOID) {
-        this.LID = LID;
-        this.DATL = DATL;
-        this.ANZ = ANZ;
-        this.POSNR = POSNR;
-        this.VOID = VOID;
-    }
-
     public long getLID() {
         return LID;
     }

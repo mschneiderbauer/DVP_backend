@@ -20,16 +20,6 @@ public class LeistungserbringungEntity {
 
     private Date DAT;
 
-    public LeistungserbringungEntity(LeistungserbringerEntity leistungserbringer, VerordnungEntity verordnung, Date DAT) {
-        this.leistungserbringer = leistungserbringer;
-        this.verordnung = verordnung;
-        this.DAT = DAT;
-        this.leistungserbringungId = new LeistungserbringungId(verordnung.getId().getVOID(), leistungserbringer.getVPNRT());
-    }
-
-    public LeistungserbringungEntity() {
-    }
-
     public LeistungserbringungId getLeistungserbringungId() {
         return leistungserbringungId;
     }
