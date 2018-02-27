@@ -7,14 +7,14 @@ import java.sql.Date;
 public class BewilligungEntity {
 
     @Id
-    public int bewilligungs_id;
+    public long bewilligungs_id;
 
     private Date BDAT;
     private String BEWNR;
     private int VOID;
 
 
-    public int getBewilligungs_id() {
+    public long getBewilligungs_id() {
         return bewilligungs_id;
     }
 
@@ -63,7 +63,7 @@ public class BewilligungEntity {
 
     @Override
     public int hashCode() {
-        int result = bewilligungs_id;
+        long result = bewilligungs_id;
         result = 31 * result + (BDAT != null ? BDAT.hashCode() : 0);
         result = 31 * result + (BEWNR != null ? BEWNR.hashCode() : 0);
         result = 31 * result + VOID;

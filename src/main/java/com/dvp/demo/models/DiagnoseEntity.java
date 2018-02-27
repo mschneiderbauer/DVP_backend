@@ -9,7 +9,7 @@ public class DiagnoseEntity {
 
     @Id
     @GeneratedValue //vielleicht
-    public int diagnoseId;
+    public long diagnoseId;
 
     private Date DATD;
     private String DIAGN;
@@ -24,7 +24,7 @@ public class DiagnoseEntity {
         this.VOID = VOID;
     }
 
-    public int getDiagnoseId() {
+    public long getDiagnoseId() {
         return diagnoseId;
     }
 
@@ -84,7 +84,7 @@ public class DiagnoseEntity {
 
     @Override
     public int hashCode() {
-        int result = diagnoseId;
+        long result = diagnoseId;
         result = 31 * result + (DATD != null ? DATD.hashCode() : 0);
         result = 31 * result + (DIAGN != null ? DIAGN.hashCode() : 0);
         result = 31 * result + VOID;

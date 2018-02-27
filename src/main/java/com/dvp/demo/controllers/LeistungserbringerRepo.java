@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface LeistungserbringerRepo extends CrudRepository<LeistungserbringerEntity, Long> {
+public interface LeistungserbringerRepo extends CrudRepository<LeistungserbringerEntity, String> {
 }

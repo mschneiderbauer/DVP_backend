@@ -8,7 +8,7 @@ import java.sql.Date;
 public class LeistungEntity {
 
     @Id
-    public int LID;
+    public long LID;
 
     private Date DATL;
     private int ANZ;
@@ -26,7 +26,7 @@ public class LeistungEntity {
         this.VOID = VOID;
     }
 
-    public int getLID() {
+    public long getLID() {
         return LID;
     }
 
@@ -86,7 +86,7 @@ public class LeistungEntity {
 
     @Override
     public int hashCode() {
-        int result = LID;
+        long result = LID;
         result = 31 * result + (DATL != null ? DATL.hashCode() : 0);
         result = 31 * result + ANZ;
         result = 31 * result + (POSNR != null ? POSNR.hashCode() : 0);

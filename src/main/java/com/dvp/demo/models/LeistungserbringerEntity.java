@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class LeistungserbringerEntity {
     @Id
     public String VPNRT;
+
     private String ZUNUT;
 
     public LeistungserbringerEntity() {
