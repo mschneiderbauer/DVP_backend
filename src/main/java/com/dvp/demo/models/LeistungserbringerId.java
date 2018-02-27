@@ -7,11 +7,11 @@ import java.io.Serializable;
 @Embeddable
 public class LeistungserbringerId implements Serializable{
     @Column(name = "vpnr")
-    private String VPNR;
+    private long VPNR;
     @Column(name = "kundennummer")
     private long kundennummer;
 
-    public LeistungserbringerId(String VPNR, long kundennummer) {
+    public LeistungserbringerId(long VPNR, long kundennummer) {
         this.VPNR = VPNR;
         this.kundennummer = kundennummer;
     }
@@ -19,7 +19,7 @@ public class LeistungserbringerId implements Serializable{
     public LeistungserbringerId() {
     }
 
-    public String getVPNR() {
+    public long getVPNR() {
         return VPNR;
     }
 
@@ -34,13 +34,13 @@ public class LeistungserbringerId implements Serializable{
 
         LeistungserbringerId that = (LeistungserbringerId) o;
 
-        if (kundennummer != that.kundennummer) return false;
-        return VPNR.equals(that.VPNR);
+        if (VPNR != that.VPNR) return false;
+        return kundennummer == that.kundennummer;
     }
 
     @Override
     public int hashCode() {
-        int result = VPNR.hashCode();
+        int result = (int) (VPNR ^ (VPNR >>> 32));
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         return result;
     }

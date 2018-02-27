@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class SendungId implements Serializable{
     @Column(name = "sendung_id")
     private long id;
+    @Column(name = "kundennummer")
     private long kundennummer;
 
     public SendungId(long id, long kundennummer) {

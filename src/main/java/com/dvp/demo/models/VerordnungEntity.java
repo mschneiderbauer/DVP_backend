@@ -2,7 +2,6 @@ package com.dvp.demo.models;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +12,7 @@ public class VerordnungEntity {
     public VerordnungId id;
 
     private String KOSTENTRAEGER;
-    private String VPNRV;
+    private long VPNRV;
     private String ZUNAV;
     private Date VDATUM;
 
@@ -41,11 +40,11 @@ public class VerordnungEntity {
         this.KOSTENTRAEGER = KOSTENTRAEGER;
     }
 
-    public String getVPNRV() {
+    public long getVPNRV() {
         return VPNRV;
     }
 
-    public void setVPNRV(String VPNRV) {
+    public void setVPNRV(long VPNRV) {
         this.VPNRV = VPNRV;
     }
 
@@ -95,5 +94,39 @@ public class VerordnungEntity {
 
     public void setLeistungserbringungen(List<LeistungserbringungEntity> leistungserbringungen) {
         this.leistungserbringungen = leistungserbringungen;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VerordnungEntity that = (VerordnungEntity) o;
+
+        if (VPNRV != that.VPNRV) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (KOSTENTRAEGER != null ? !KOSTENTRAEGER.equals(that.KOSTENTRAEGER) : that.KOSTENTRAEGER != null)
+            return false;
+        if (ZUNAV != null ? !ZUNAV.equals(that.ZUNAV) : that.ZUNAV != null) return false;
+        if (VDATUM != null ? !VDATUM.equals(that.VDATUM) : that.VDATUM != null) return false;
+        if (diagnosen != null ? !diagnosen.equals(that.diagnosen) : that.diagnosen != null) return false;
+        if (leistungen != null ? !leistungen.equals(that.leistungen) : that.leistungen != null) return false;
+        if (bewilligungen != null ? !bewilligungen.equals(that.bewilligungen) : that.bewilligungen != null)
+            return false;
+        return leistungserbringungen != null ? leistungserbringungen.equals(that.leistungserbringungen) : that.leistungserbringungen == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (KOSTENTRAEGER != null ? KOSTENTRAEGER.hashCode() : 0);
+        result = 31 * result + (int) (VPNRV ^ (VPNRV >>> 32));
+        result = 31 * result + (ZUNAV != null ? ZUNAV.hashCode() : 0);
+        result = 31 * result + (VDATUM != null ? VDATUM.hashCode() : 0);
+        result = 31 * result + (diagnosen != null ? diagnosen.hashCode() : 0);
+        result = 31 * result + (leistungen != null ? leistungen.hashCode() : 0);
+        result = 31 * result + (bewilligungen != null ? bewilligungen.hashCode() : 0);
+        result = 31 * result + (leistungserbringungen != null ? leistungserbringungen.hashCode() : 0);
+        return result;
     }
 }
