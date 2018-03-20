@@ -6,9 +6,7 @@ import java.io.Serializable;
 @Embeddable
 public class VerordnungId implements Serializable{
 
-
     private long VOID;
-
 
     private long kundennummer;
 

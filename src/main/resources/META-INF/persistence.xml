@@ -3,6 +3,7 @@
 
     <persistence-unit name="NewPersistenceUnit">
         <class>com.dvp.demo.models.VerordnungEntity</class>
+        <class>com.dvp.demo.models.PatientenEntity</class>
        <!-- <class>com.dvp.demo.models.LeistungserbringerEntity</class>
         <class>com.dvp.demo.models.DiagnoseEntity</class>
         <class>com.dvp.demo.models.LeistungserbringungEntity</class>

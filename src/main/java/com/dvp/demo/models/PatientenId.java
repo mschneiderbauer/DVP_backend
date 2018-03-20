@@ -6,24 +6,24 @@ import java.io.Serializable;
 @Embeddable
 public class PatientenId implements Serializable{
 
-    private long VSNRP;
-    
+    @Column(name = "kundennummer")
     private long kundennummer;
+    @Column(name = "VSNRP")
+    private long VSNRP;
 
     public PatientenId(){
     }
 
-    public PatientenId(long VSNRP, long kundennummer) {  //hier von String umwandeln?
-        this.VSNRP = VSNRP;
+    public PatientenId(long kundennummer, long VSNRP) {
         this.kundennummer = kundennummer;
+        this.VSNRP = VSNRP;
     }
 
-    @Column(name = "VSNRP")
+
     public long getVSNRP() {
         return VSNRP;
     }
 
-    @Column(name = "kundennummer")
     public long getKundennummer() {
         return kundennummer;
     }
@@ -43,14 +43,14 @@ public class PatientenId implements Serializable{
 
         PatientenId that = (PatientenId) o;
 
-        if (VSNRP != that.VSNRP) return false;
-        return kundennummer == that.kundennummer;
+        if (kundennummer != that.kundennummer) return false;
+        return VSNRP == that.VSNRP;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (VSNRP ^ (VSNRP >>> 32));
-        result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
+        int result = (int) (kundennummer ^ (kundennummer >>> 32));
+        result = 31 * result + (int) (VSNRP ^ (VSNRP >>> 32));
         return result;
     }
 }

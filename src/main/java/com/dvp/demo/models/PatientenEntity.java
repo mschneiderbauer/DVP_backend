@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Table(name = "Patienten", schema = "dvpdatabase")
 public class PatientenEntity { //Serializable?
 
-
-    public PatientenId id;
+    @EmbeddedId
+    private PatientenId id;
 
     private String VONAP;
     private String ZUNAP;
@@ -20,7 +20,24 @@ public class PatientenEntity { //Serializable?
     private String VONVS;
     private String ZUNVS;
 
-    @EmbeddedId
+    public PatientenEntity(PatientenId id, String VONAP, String ZUNAP, String STRA, int PLZL, String ORT, String LAND, int KOSTENTRAEGER, long VSNRA, String VONVS, String ZUNVS) {
+        this.id = id;
+        this.VONAP = VONAP;
+        this.ZUNAP = ZUNAP;
+        this.STRA = STRA;
+        this.PLZL = PLZL;
+        this.ORT = ORT;
+        this.LAND = LAND;
+        this.KOSTENTRAEGER = KOSTENTRAEGER;
+        this.VSNRA = VSNRA;
+        this.VONVS = VONVS;
+        this.ZUNVS = ZUNVS;
+    }
+
+    public PatientenEntity() {
+    }
+
+
     public PatientenId getId() {
         return id;
     }
