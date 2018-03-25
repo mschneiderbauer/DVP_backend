@@ -34,16 +34,13 @@ public class MyController {
     }
 
     @RequestMapping(value = "/patientById" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-    public PatientenEntity getPatientById(@RequestBody long SVNRP,  long kundennummer){
-
-        PatientenEntity pe = PatientenRepo.findOne(new PatientenId(SVNRP, kundennummer));
+    public PatientenEntity getPatientById(@RequestBody PatientenId id){
+        PatientenEntity pe = PatientenRepo.findOne(id);
         return pe;
-
     }
 
 
     @RequestMapping(value = "/createPatient" ,method = RequestMethod.POST,consumes= MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
     public void createPatient(@RequestBody PatientenEntity pe){
         ObjectMapper map = new ObjectMapper();
 
