@@ -2,6 +2,7 @@ package com.dvp.demo.controller;
 
 import com.dvp.demo.daos.*;
 //import com.dvp.demo.models.PatientenEntity;
+import com.dvp.demo.models.KostentraegerEntity;
 import com.dvp.demo.models.PatientenEntity;
 import com.dvp.demo.models.PatientenId;
 import com.dvp.demo.models.VerordnungEntity;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(value = "http://localhost:**")
 @RestController
 public class MyController {
 
@@ -25,12 +26,21 @@ public class MyController {
     @Autowired
     VerordnungRepo VerordnungRepo;
 
+    @Autowired
+    KostentraegerRepo KostentreagerRepo;
+
     @RequestMapping(value = "/alleVerordnungen" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getAlleVerordnungen(/*@RequestBody UserTokenContainer utc*/){
         //if(Checktoken(utc.getSecretKey())){
             List <VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
             return entities;
         //} else return null;
+    }
+
+    @RequestMapping(value = "/alleKostentraeger" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
+    public List<KostentraegerEntity> getAlleKostentraeger(){
+        List <KostentraegerEntity> entities = (List<KostentraegerEntity>) KostentreagerRepo.findAll();
+        return entities;
     }
 
     @RequestMapping(value = "/patientById" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +52,8 @@ public class MyController {
 
     @RequestMapping(value = "/createPatient" ,method = RequestMethod.POST,consumes= MediaType.APPLICATION_JSON_VALUE)
     public void createPatient(@RequestBody PatientenEntity pe){
+
+        //folgende Zeilen sind zum Testen
         ObjectMapper map = new ObjectMapper();
 
         try {
