@@ -30,11 +30,10 @@ public class MyController {
     KostentraegerRepo KostentreagerRepo;
 
     @RequestMapping(value = "/alleVerordnungen" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getAlleVerordnungen(/*@RequestBody UserTokenContainer utc*/){
-        //if(Checktoken(utc.getSecretKey())){
-            List <VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
-            return entities;
-        //} else return null;
+    public List<VerordnungEntity> getAlleVerordnungen(){
+
+        List <VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
+        return entities;
     }
 
     @RequestMapping(value = "/alleKostentraeger" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
