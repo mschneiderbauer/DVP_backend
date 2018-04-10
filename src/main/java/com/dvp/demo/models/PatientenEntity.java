@@ -14,13 +14,13 @@ public class PatientenEntity { //Serializable?
     private int PLZL;
     private String ORT;
     private String LAND;
-    private int KOSTENTRAEGER;
+    private int KOSTENTRAEGER_ID;
 
     private long VSNRA;
     private String VONVS;
     private String ZUNVS;
 
-    public PatientenEntity(PatientenId id, String VONAP, String ZUNAP, String STRA, int PLZL, String ORT, String LAND, int KOSTENTRAEGER, long VSNRA, String VONVS, String ZUNVS) {
+    public PatientenEntity(PatientenId id, String VONAP, String ZUNAP, String STRA, int PLZL, String ORT, String LAND, int KOSTENTRAEGER_ID, long VSNRA, String VONVS, String ZUNVS) {
         this.id = id;
         this.VONAP = VONAP;
         this.ZUNAP = ZUNAP;
@@ -28,7 +28,7 @@ public class PatientenEntity { //Serializable?
         this.PLZL = PLZL;
         this.ORT = ORT;
         this.LAND = LAND;
-        this.KOSTENTRAEGER = KOSTENTRAEGER;
+        this.KOSTENTRAEGER_ID = KOSTENTRAEGER_ID;
         this.VSNRA = VSNRA;
         this.VONVS = VONVS;
         this.ZUNVS = ZUNVS;
@@ -108,12 +108,12 @@ public class PatientenEntity { //Serializable?
 
     @Basic //Null oder nicht, so schon
     @Column(name = "kostentraeger_id")
-    public int getKOSTENTRAEGER() {
-        return KOSTENTRAEGER;
+    public int getKOSTENTRAEGER_ID() {
+        return KOSTENTRAEGER_ID;
     }
 
-    public void setKOSTENTRAEGER(int KOSTENTRAEGER) {
-        this.KOSTENTRAEGER = KOSTENTRAEGER;
+    public void setKOSTENTRAEGER_ID(int KOSTENTRAEGER) {
+        this.KOSTENTRAEGER_ID = KOSTENTRAEGER;
     }
 
     @Basic //Null oder nicht, so schon
@@ -155,7 +155,7 @@ public class PatientenEntity { //Serializable?
         PatientenEntity that = (PatientenEntity) o;
 
         if (PLZL != that.PLZL) return false;
-        if (KOSTENTRAEGER != that.KOSTENTRAEGER) return false;
+        if (KOSTENTRAEGER_ID != that.KOSTENTRAEGER_ID) return false;
         if (VSNRA != that.VSNRA) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (VONAP != null ? !VONAP.equals(that.VONAP) : that.VONAP != null) return false;
@@ -176,7 +176,7 @@ public class PatientenEntity { //Serializable?
         result = 31 * result + PLZL;
         result = 31 * result + (ORT != null ? ORT.hashCode() : 0);
         result = 31 * result + (LAND != null ? LAND.hashCode() : 0);
-        result = 31 * result + KOSTENTRAEGER;
+        result = 31 * result + KOSTENTRAEGER_ID;
         result = 31 * result + (int) (VSNRA ^ (VSNRA >>> 32));
         result = 31 * result + (VONVS != null ? VONVS.hashCode() : 0);
         result = 31 * result + (ZUNVS != null ? ZUNVS.hashCode() : 0);

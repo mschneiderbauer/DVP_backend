@@ -10,7 +10,7 @@ public class VerordnungEntity {
 
     public VerordnungId id;
 
-    //private String KOSTENTRAEGER;
+    private int KOSTENTRAEGER;
     private long VPNRV;
     private String ZUNAV;
     private Date VDATUM;
@@ -85,6 +85,15 @@ public class VerordnungEntity {
         this.VDATUM = VDATUM;
     }
 
+    @Basic
+    public int getKOSTENTRAEGER() {
+        return KOSTENTRAEGER;
+    }
+
+
+    public void setKOSTENTRAEGER(int KOSTENTRAEGER) {
+        this.KOSTENTRAEGER = KOSTENTRAEGER;
+    }
 
     /*
 
