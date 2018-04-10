@@ -2,7 +2,6 @@ package com.dvp.demo.models;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "Verordnungen", schema = "dvpdatabase")
@@ -10,22 +9,15 @@ public class VerordnungEntity {
 
     public VerordnungId id;
 
-    private int KOSTENTRAEGER;
+    private int KOSTENTRAEGER_ID;
     private long VPNRV;
     private String ZUNAV;
     private Date VDATUM;
 
-   /* @OneToMany
-    private List<DiagnoseEntity> diagnosen;
+    public long VSNRP;
 
-    @OneToMany
-    private List<LeistungEntity> leistungen;
+    public long Sendung_id;
 
-    @OneToMany
-    private List<BewilligungEntity>bewilligungen;
-
-    @OneToMany(mappedBy = "Verordnungen")
-    private List<LeistungserbringungEntity>leistungserbringungen;*/
 
     public VerordnungEntity() {
     }
@@ -46,13 +38,6 @@ public class VerordnungEntity {
         this.id = id;
     }
 
-    /*public String getKOSTENTRAEGER() {
-        return KOSTENTRAEGER;
-    }
-
-    public void setKOSTENTRAEGER(String KOSTENTRAEGER) {
-        this.KOSTENTRAEGER = KOSTENTRAEGER;
-    }*/
 
     @Basic
     @Column(name = "vpnrv")
@@ -86,48 +71,30 @@ public class VerordnungEntity {
     }
 
     @Basic
-    public int getKOSTENTRAEGER() {
-        return KOSTENTRAEGER;
+    public int getKOSTENTRAEGER_ID() {
+        return KOSTENTRAEGER_ID;
     }
 
 
-    public void setKOSTENTRAEGER(int KOSTENTRAEGER) {
-        this.KOSTENTRAEGER = KOSTENTRAEGER;
+    public void setKOSTENTRAEGER_ID(int KOSTENTRAEGER_ID) {
+        this.KOSTENTRAEGER_ID = KOSTENTRAEGER_ID;
     }
 
-    /*
-
-    public List<DiagnoseEntity> getDiagnosen() {
-        return diagnosen;
+    public long getVSNRP() {
+        return VSNRP;
     }
 
-    public void setDiagnosen(List<DiagnoseEntity> diagnosen) {
-        this.diagnosen = diagnosen;
+    public void setVSNRP(long VSNRP) {
+        this.VSNRP = VSNRP;
     }
 
-    public List<LeistungEntity> getLeistungen() {
-        return leistungen;
+    public long getSendung_id() {
+        return Sendung_id;
     }
 
-    public void setLeistungen(List<LeistungEntity> leistungen) {
-        this.leistungen = leistungen;
+    public void setSendung_id(long sendung_id) {
+        Sendung_id = sendung_id;
     }
-
-    public List<BewilligungEntity> getBewilligungen() {
-        return bewilligungen;
-    }
-
-    public void setBewilligungen(List<BewilligungEntity> bewilligungen) {
-        this.bewilligungen = bewilligungen;
-    }
-
-    public List<LeistungserbringungEntity> getLeistungserbringungen() {
-        return leistungserbringungen;
-    }
-
-    public void setLeistungserbringungen(List<LeistungserbringungEntity> leistungserbringungen) {
-        this.leistungserbringungen = leistungserbringungen;
-    } */
 
     @Override
     public boolean equals(Object o) {
@@ -136,7 +103,10 @@ public class VerordnungEntity {
 
         VerordnungEntity that = (VerordnungEntity) o;
 
+        if (KOSTENTRAEGER_ID != that.KOSTENTRAEGER_ID) return false;
         if (VPNRV != that.VPNRV) return false;
+        if (VSNRP != that.VSNRP) return false;
+        if (Sendung_id != that.Sendung_id) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (ZUNAV != null ? !ZUNAV.equals(that.ZUNAV) : that.ZUNAV != null) return false;
         return VDATUM != null ? VDATUM.equals(that.VDATUM) : that.VDATUM == null;
@@ -145,12 +115,12 @@ public class VerordnungEntity {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + KOSTENTRAEGER_ID;
         result = 31 * result + (int) (VPNRV ^ (VPNRV >>> 32));
         result = 31 * result + (ZUNAV != null ? ZUNAV.hashCode() : 0);
         result = 31 * result + (VDATUM != null ? VDATUM.hashCode() : 0);
+        result = 31 * result + (int) (VSNRP ^ (VSNRP >>> 32));
+        result = 31 * result + (int) (Sendung_id ^ (Sendung_id >>> 32));
         return result;
     }
-
-
-
 }

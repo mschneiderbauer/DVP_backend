@@ -2,10 +2,7 @@ package com.dvp.demo.controller;
 
 import com.dvp.demo.daos.*;
 //import com.dvp.demo.models.PatientenEntity;
-import com.dvp.demo.models.KostentraegerEntity;
-import com.dvp.demo.models.PatientenEntity;
-import com.dvp.demo.models.PatientenId;
-import com.dvp.demo.models.VerordnungEntity;
+import com.dvp.demo.models.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.minidev.json.JSONObject;
@@ -29,38 +26,72 @@ public class MyController {
     @Autowired
     KostentraegerRepo KostentreagerRepo;
 
-    @RequestMapping(value = "/alleVerordnungen" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getAlleVerordnungen(){
+    @Autowired
+    BewilligungRepo BewilligungRepo;
 
-        List <VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
+    @Autowired
+    DiagnoseRepo DiagnoseRepo;
+
+    @Autowired
+    LeistungRepo LeistungRepo;
+
+
+    @RequestMapping(value = "/alleVerordnungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<VerordnungEntity> getAlleVerordnungen() {
+
+        List<VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
         return entities;
     }
 
-    @RequestMapping(value = "/alleKostentraeger" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-    public List<KostentraegerEntity> getAlleKostentraeger(){
-        List <KostentraegerEntity> entities = (List<KostentraegerEntity>) KostentreagerRepo.findAll();
+    @RequestMapping(value = "/alleKostentraeger", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<KostentraegerEntity> getAlleKostentraeger() {
+        List<KostentraegerEntity> entities = (List<KostentraegerEntity>) KostentreagerRepo.findAll();
         return entities;
     }
 
-    @RequestMapping(value = "/patientById" ,method = RequestMethod.POST, consumes= MediaType.APPLICATION_JSON_VALUE)
-    public PatientenEntity getPatientById(@RequestBody PatientenId id){
+    @RequestMapping(value = "/patientById", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PatientenEntity getPatientById(@RequestBody PatientenId id) {
         PatientenEntity pe = PatientenRepo.findOne(id);
         return pe;
     }
 
 
-    @RequestMapping(value = "/createPatient" ,method = RequestMethod.POST,consumes= MediaType.APPLICATION_JSON_VALUE)
-    public void createPatient(@RequestBody PatientenEntity pe){
-
-        //folgende Zeilen sind zum Testen
-        ObjectMapper map = new ObjectMapper();
-
-        try {
-            System.out.println(map.writeValueAsString(pe));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-
+    @RequestMapping(value = "/createPatient", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createPatient(@RequestBody PatientenEntity pe) {
         PatientenRepo.save(pe);
+    }
+
+    @RequestMapping(value = "/createLeistungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createLeistungen(@RequestBody List<LeistungEntity> el) {
+        LeistungRepo.save(el);
+    }
+
+    @RequestMapping(value = "/createDiagnosen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createDiagnosen(@RequestBody List<DiagnoseEntity> el) {
+        DiagnoseRepo.save(el);
+    }
+
+    @RequestMapping(value = "/createBewilligungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createBewilligungen(@RequestBody List<BewilligungEntity> el) {
+        BewilligungRepo.save(el);
+    }
+
+    @RequestMapping(value = "/createVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createVerordnung(@RequestBody VerordnungEntity ve) {
+        VerordnungRepo.save(ve);
+    }
+
+    @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody long VSNRP, long kundennummer) {
+
+        List<VerordnungEntity> el = VerordnungRepo.findByVSNRPAndId_Kundennummer(VSNRP, kundennummer);
+        return el;
+    }
+
+    @RequestMapping(value = "/getVerordnungenBysendung_id", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<VerordnungEntity> getVerordnungBysendung_id(@RequestBody long sendung_id, long kundennummer) {
+
+        List<VerordnungEntity> el = VerordnungRepo.findBySendung_idAndId_Kundennummer(sendung_id, kundennummer);
+        return el;
     }
 }

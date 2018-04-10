@@ -4,12 +4,12 @@
     <persistence-unit name="NewPersistenceUnit">
         <class>com.dvp.demo.models.VerordnungEntity</class>
         <class>com.dvp.demo.models.PatientenEntity</class>
-       <!-- <class>com.dvp.demo.models.LeistungserbringerEntity</class>
         <class>com.dvp.demo.models.DiagnoseEntity</class>
-        <class>com.dvp.demo.models.LeistungserbringungEntity</class>
         <class>com.dvp.demo.models.PatientenEntity</class>
         <class>com.dvp.demo.models.BewilligungEntity</class>
-        <class>com.dvp.demo.models.LeistungEntity</class>-->
+        <class>com.dvp.demo.models.LeistungEntity</class>
+        <!--<class>com.dvp.demo.models.LeistungserbringungEntity</class>
+        <class>com.dvp.demo.models.LeistungserbringerEntity</class>-->
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306"/>
             <property name="toplink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
