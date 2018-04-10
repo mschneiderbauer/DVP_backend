@@ -84,14 +84,14 @@ public class MyController {
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody long VSNRP, long kundennummer) {
 
-        List<VerordnungEntity> el = VerordnungRepo.findByVSNRPAndId_Kundennummer(VSNRP, kundennummer);
+        List<VerordnungEntity> el = VerordnungRepo.findByvsnrpAndId_Kundennummer(VSNRP, kundennummer);
         return el;
     }
 
-    @RequestMapping(value = "/getVerordnungenBysendung_id", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getVerordnungBysendung_id(@RequestBody long sendung_id, long kundennummer) {
+    @RequestMapping(value = "/getVerordnungenBysendungid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody long sendungid, long kundennummer) {
 
-        List<VerordnungEntity> el = VerordnungRepo.findBySendung_idAndId_Kundennummer(sendung_id, kundennummer);
+        List<VerordnungEntity> el = VerordnungRepo.findBysendungidAndId_Kundennummer(sendungid, kundennummer);
         return el;
     }
 }

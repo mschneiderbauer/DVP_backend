@@ -14,9 +14,9 @@ public class VerordnungEntity {
     private String ZUNAV;
     private Date VDATUM;
 
-    public long VSNRP;
+    public long vsnrp;
 
-    public long Sendung_id;
+    public long sendungid;
 
 
     public VerordnungEntity() {
@@ -80,20 +80,20 @@ public class VerordnungEntity {
         this.KOSTENTRAEGER_ID = KOSTENTRAEGER_ID;
     }
 
-    public long getVSNRP() {
-        return VSNRP;
+    public long getVsnrp() {
+        return vsnrp;
     }
 
-    public void setVSNRP(long VSNRP) {
-        this.VSNRP = VSNRP;
+    public void setVsnrp(long VSNRP) {
+        this.vsnrp = VSNRP;
     }
 
-    public long getSendung_id() {
-        return Sendung_id;
+    public long getSendungid() {
+        return sendungid;
     }
 
-    public void setSendung_id(long sendung_id) {
-        Sendung_id = sendung_id;
+    public void setSendungid(long sendung_id) {
+        this.sendungid = sendung_id;
     }
 
     @Override
@@ -105,8 +105,8 @@ public class VerordnungEntity {
 
         if (KOSTENTRAEGER_ID != that.KOSTENTRAEGER_ID) return false;
         if (VPNRV != that.VPNRV) return false;
-        if (VSNRP != that.VSNRP) return false;
-        if (Sendung_id != that.Sendung_id) return false;
+        if (vsnrp != that.vsnrp) return false;
+        if (sendungid != that.sendungid) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (ZUNAV != null ? !ZUNAV.equals(that.ZUNAV) : that.ZUNAV != null) return false;
         return VDATUM != null ? VDATUM.equals(that.VDATUM) : that.VDATUM == null;
@@ -119,8 +119,8 @@ public class VerordnungEntity {
         result = 31 * result + (int) (VPNRV ^ (VPNRV >>> 32));
         result = 31 * result + (ZUNAV != null ? ZUNAV.hashCode() : 0);
         result = 31 * result + (VDATUM != null ? VDATUM.hashCode() : 0);
-        result = 31 * result + (int) (VSNRP ^ (VSNRP >>> 32));
-        result = 31 * result + (int) (Sendung_id ^ (Sendung_id >>> 32));
+        result = 31 * result + (int) (vsnrp ^ (vsnrp >>> 32));
+        result = 31 * result + (int) (sendungid ^ (sendungid >>> 32));
         return result;
     }
 }

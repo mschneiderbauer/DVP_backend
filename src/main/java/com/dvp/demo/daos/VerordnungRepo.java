@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface VerordnungRepo extends CrudRepository<VerordnungEntity, VerordnungId> {
 
-    public List<VerordnungEntity> findByVSNRPAndId_Kundennummer(long VSNRP, long kundennummer);
+    public List<VerordnungEntity> findByvsnrpAndId_Kundennummer(long VSNRP, long kundennummer);
 
-    public List<VerordnungEntity> findBySendung_idAndId_Kundennummer(long Sendung_id, long kundennummer);
+    public List<VerordnungEntity> findBysendungidAndId_Kundennummer(long sendungid, long kundennummer);
 }
