@@ -19,7 +19,6 @@ public class PatientenId implements Serializable{
         this.VSNRP = VSNRP;
     }
 
-
     public long getVSNRP() {
         return VSNRP;
     }

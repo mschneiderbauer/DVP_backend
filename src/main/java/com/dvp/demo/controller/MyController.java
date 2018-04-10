@@ -55,7 +55,6 @@ public class MyController {
         return pe;
     }
 
-
     @RequestMapping(value = "/createPatient", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createPatient(@RequestBody PatientenEntity pe) {
         PatientenRepo.save(pe);
