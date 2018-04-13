@@ -36,13 +36,6 @@ public class MyController {
     LeistungRepo LeistungRepo;
 
 
-    @RequestMapping(value = "/alleVerordnungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getAlleVerordnungen() {
-
-        List<VerordnungEntity> entities = (List<VerordnungEntity>) VerordnungRepo.findAll();
-        return entities;
-    }
-
     @RequestMapping(value = "/alleKostentraeger", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<KostentraegerEntity> getAlleKostentraeger() {
         List<KostentraegerEntity> entities = (List<KostentraegerEntity>) KostentreagerRepo.findAll();
