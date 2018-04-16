@@ -8,6 +8,7 @@
         <class>com.dvp.demo.models.PatientenEntity</class>
         <class>com.dvp.demo.models.BewilligungEntity</class>
         <class>com.dvp.demo.models.LeistungEntity</class>
+        <class>com.dvp.demo.models.SendungEntity</class>
         <!--<class>com.dvp.demo.models.LeistungserbringungEntity</class>
         <class>com.dvp.demo.models.LeistungserbringerEntity</class>-->
         <properties>

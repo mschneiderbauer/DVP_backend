@@ -14,9 +14,9 @@ public class VerordnungEntity {
     private String ZUNAV;
     private Date VDATUM;
 
-    public long vsnrp;
+    private long vsnrp;
 
-    public long sendungid;
+    private long sendungid;
 
 
     public VerordnungEntity() {
