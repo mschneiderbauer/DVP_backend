@@ -6,21 +6,21 @@ import java.io.Serializable;
 @Embeddable
 public class VerordnungId implements Serializable{
 
-    private long VOID;
+    private long vo_id;
 
     private long kundennummer;
 
     public VerordnungId() {
     }
 
-    public VerordnungId(long VOID, long kundennummer) {
-        this.VOID = VOID;
+    public VerordnungId(long vo_id, long kundennummer) {
+        this.vo_id = vo_id;
         this.kundennummer = kundennummer;
     }
 
     @Column(name = "VOID")
-    public long getVOID() {
-        return VOID;
+    public long getVo_id() {
+        return vo_id;
     }
 
     @Column(name = "kundennummer")
@@ -28,8 +28,8 @@ public class VerordnungId implements Serializable{
         return kundennummer;
     }
 
-    public void setVOID(long VOID) {
-        this.VOID = VOID;
+    public void setVo_id(long VOID) {
+        this.vo_id = VOID;
     }
 
     public void setKundennummer(long kundennummer) {
@@ -43,13 +43,13 @@ public class VerordnungId implements Serializable{
 
         VerordnungId that = (VerordnungId) o;
 
-        if (VOID != that.VOID) return false;
+        if (vo_id != that.vo_id) return false;
         return kundennummer == that.kundennummer;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (VOID ^ (VOID >>> 32));
+        int result = (int) (vo_id ^ (vo_id >>> 32));
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         return result;
     }

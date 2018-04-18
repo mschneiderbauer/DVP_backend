@@ -68,8 +68,9 @@ public class MyController {
     }
 
     @RequestMapping(value = "/createVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createVerordnung(@RequestBody VerordnungEntity ve) {
-        verordnungRepo.save(ve);
+    public VerordnungId createVerordnung(@RequestBody VerordnungEntity ve) {
+        VerordnungEntity newVe = verordnungRepo.save(ve);
+        return newVe.getId();
     }
 
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
