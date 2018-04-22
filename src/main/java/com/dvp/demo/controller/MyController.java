@@ -44,7 +44,6 @@ public class MyController {
 
     @RequestMapping(value = "/patientById", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public PatientenEntity getPatientById(@RequestBody PatientIdContainer ct) {
-
         PatientenEntity pe = patientenRepo.findByvsnrpAndKundennummer(ct.vsnrp,ct.kundennummer);
         return pe;
     }
@@ -78,14 +77,12 @@ public class MyController {
 
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody long VSNRP, long kundennummer) {
-
         List<VerordnungEntity> el = verordnungRepo.findByvsnrpAndKundennummer(VSNRP, kundennummer);
         return el;
     }
 
     @RequestMapping(value = "/getVerordnungenBysendungid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody long sendungid, long kundennummer) {
-
         List<VerordnungEntity> el = verordnungRepo.findBysendungidAndKundennummer(sendungid, kundennummer);
         return el;
     }

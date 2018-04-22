@@ -5,21 +5,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Sendungen", schema = "dvpdatabase", catalog = "")
 public class SendungEntity {
-    
-    SendungId id;
+
+    public long id;
+    private long kundennummer;
 
     private String periode;
 
-    @EmbeddedId
-    public SendungId getId() {
+    @Id
+    @Column(name = "sendung_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getId() {
         return id;
     }
 
-    public void setId(SendungId id) {
+    public void setId(long id) {
         this.id = id;
     }
 
+    @Column(name = "kundennummer")
+    public long getKundennummer() {
+        return kundennummer;
+    }
 
+    public void setKundennummer(long kundennummer) {
+        this.kundennummer = kundennummer;
+    }
 
     @Basic
     @Column(name = "periode")
@@ -38,13 +48,15 @@ public class SendungEntity {
 
         SendungEntity that = (SendungEntity) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (id != that.id) return false;
+        if (kundennummer != that.kundennummer) return false;
         return periode != null ? periode.equals(that.periode) : that.periode == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         result = 31 * result + (periode != null ? periode.hashCode() : 0);
         return result;
     }
