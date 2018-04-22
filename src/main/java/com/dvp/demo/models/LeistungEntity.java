@@ -1,28 +1,27 @@
 package com.dvp.demo.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Leistungen", schema = "dvpdatabase")
 public class LeistungEntity {
 
-   
     public int LID;
 
     private Date DATL;
     private int ANZ;
     private String POSNR;
-    private long VOID;
+    private long VO_ID;
 
     @Id
+    @Column(name="LID")
     public int getLID() {
         return LID;
     }
 
     @Basic
     @Column(name="DATL")
-    @Temporal(TemporalType.DATE)
     public Date getDATL() {
         return DATL;
     }
@@ -39,10 +38,10 @@ public class LeistungEntity {
         return POSNR;
     }
 
-    @Basic //?
-    @Column(name="VOID")
-    public long getVOID() {
-        return VOID;
+    @Basic
+    @Column(name="VO_ID")
+    public long getVO_ID() {
+        return VO_ID;
     }
 
     public void setDATL(Date DATL) {
@@ -57,8 +56,8 @@ public class LeistungEntity {
         this.POSNR = POSNR;
     }
 
-    public void setVOID(long VOID) {
-        this.VOID = VOID;
+    public void setVO_ID(long VO_ID) {
+        this.VO_ID = VO_ID;
     }
 
     public void setLID(int LID) {
@@ -74,7 +73,7 @@ public class LeistungEntity {
 
         if (LID != that.LID) return false;
         if (ANZ != that.ANZ) return false;
-        if (VOID != that.VOID) return false;
+        if (VO_ID != that.VO_ID) return false;
         if (DATL != null ? !DATL.equals(that.DATL) : that.DATL != null) return false;
         return POSNR != null ? POSNR.equals(that.POSNR) : that.POSNR == null;
     }
@@ -85,7 +84,7 @@ public class LeistungEntity {
         result = 31 * result + (DATL != null ? DATL.hashCode() : 0);
         result = 31 * result + (int) (ANZ ^ (ANZ >>> 32));
         result = 31 * result + (POSNR != null ? POSNR.hashCode() : 0);
-        result = 31 * result + (int) (VOID ^ (VOID >>> 32));
+        result = 31 * result + (int) (VO_ID ^ (VO_ID >>> 32));
         return result;
     }
 }

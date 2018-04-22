@@ -1,7 +1,7 @@
 package com.dvp.demo.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Verordnungen", schema = "dvpdatabase")
@@ -61,7 +61,6 @@ public class VerordnungEntity {
 
     @Basic
     @Column(name = "vdatum")
-    @Temporal(TemporalType.DATE)
     public Date getVDATUM() {
         return VDATUM;
     }

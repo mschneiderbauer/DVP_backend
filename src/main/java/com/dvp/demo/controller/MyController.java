@@ -59,7 +59,9 @@ public class MyController {
 
     @RequestMapping(value = "/createDiagnosen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createDiagnosen(@RequestBody List<DiagnoseEntity> el) {
-        diagnoseRepo.save(el);
+        for (DiagnoseEntity diagnose : el) {
+            diagnoseRepo.save(diagnose);
+        }
     }
 
     @RequestMapping(value = "/createBewilligungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

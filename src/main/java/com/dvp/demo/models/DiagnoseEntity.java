@@ -1,29 +1,30 @@
 package com.dvp.demo.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "Diagnosen", schema = "dvpdatabase")
 public class DiagnoseEntity {
 
-    public int diagnoseId;
+    public int diagnose_id;
 
+    private long VO_ID;
     private Date DATD;
     private String DIAGN;
-    private long VOID;
+
 
     public DiagnoseEntity() {
     }
 
     @Id
-    public int getDiagnoseId() {
-        return diagnoseId;
+    @Column(name = "diagnose_id")
+    public int getDiagnose_id() {
+        return diagnose_id;
     }
 
     @Basic
     @Column(name = "DATD")
-    @Temporal(TemporalType.DATE)
     public Date getDATD() {
         return DATD;
     }
@@ -35,9 +36,9 @@ public class DiagnoseEntity {
     }
 
     @Basic
-    @Column(name = "VOID")
-    public long getVOID() {
-        return VOID;
+    @Column(name = "VO_ID")
+    public long getVO_ID() {
+        return VO_ID;
     }
 
     public void setDATD(Date DATD) {
@@ -48,13 +49,13 @@ public class DiagnoseEntity {
         this.DIAGN = DIAGN;
     }
 
-    public void setVOID(long VOID) {
-        this.VOID = VOID;
+    public void setVO_ID(long VOID) {
+        this.VO_ID = VOID;
     }
 
 
-    public void setDiagnoseId(int diagnoseId) {
-        this.diagnoseId = diagnoseId;
+    public void setDiagnose_id(int diagnoseId) {
+        this.diagnose_id = diagnoseId;
     }
 
     @Override
@@ -64,18 +65,18 @@ public class DiagnoseEntity {
 
         DiagnoseEntity that = (DiagnoseEntity) o;
 
-        if (diagnoseId != that.diagnoseId) return false;
-        if (VOID != that.VOID) return false;
+        if (diagnose_id != that.diagnose_id) return false;
+        if (VO_ID != that.VO_ID) return false;
         if (DATD != null ? !DATD.equals(that.DATD) : that.DATD != null) return false;
         return DIAGN != null ? DIAGN.equals(that.DIAGN) : that.DIAGN == null;
     }
 
     @Override
     public int hashCode() {
-        int result = diagnoseId;
+        int result = diagnose_id;
         result = 31 * result + (DATD != null ? DATD.hashCode() : 0);
         result = 31 * result + (DIAGN != null ? DIAGN.hashCode() : 0);
-        result = 31 * result + (int) (VOID ^ (VOID >>> 32));
+        result = 31 * result + (int) (VO_ID ^ (VO_ID >>> 32));
         return result;
     }
 }

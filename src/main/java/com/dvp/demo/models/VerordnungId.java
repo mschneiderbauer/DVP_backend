@@ -18,7 +18,7 @@ public class VerordnungId implements Serializable{
         this.kundennummer = kundennummer;
     }
 
-    @Column(name = "VOID")
+    @Column(name = "VO_ID")
     public long getVo_id() {
         return vo_id;
     }

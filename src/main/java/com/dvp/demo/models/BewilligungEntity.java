@@ -1,19 +1,20 @@
 package com.dvp.demo.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
+@Table(name = "Bewilligungen", schema = "dvpdatabase")
 public class BewilligungEntity {
-
 
     public long bewilligungs_id;
 
     private Date BDAT;
     private String BEWNR;
-    private long VOID;
+    private long VO_ID;
 
     @Id
+    @Column(name = "bewilligungs_id")
     public long getBewilligungs_id() {
         return bewilligungs_id;
     }
@@ -23,7 +24,6 @@ public class BewilligungEntity {
 
     @Basic
     @Column(name = "BDAT")
-    @Temporal(TemporalType.DATE)
     public Date getBDAT() {
         return BDAT;
     }
@@ -35,9 +35,9 @@ public class BewilligungEntity {
     }
 
     @Basic
-    @Column(name = "VOID")
-    public long getVOID() {
-        return VOID;
+    @Column(name = "VO_ID")
+    public long getVO_ID() {
+        return VO_ID;
     }
 
     public void setBDAT(Date BDAT) {
@@ -48,8 +48,8 @@ public class BewilligungEntity {
         this.BEWNR = BEWNR;
     }
 
-    public void setVOID(long VOID) {
-        this.VOID = VOID;
+    public void setVO_ID(long VOID) {
+        this.VO_ID = VOID;
     }
 
     public void setBewilligungs_id(long bewilligungs_id) {
@@ -64,7 +64,7 @@ public class BewilligungEntity {
         BewilligungEntity that = (BewilligungEntity) o;
 
         if (bewilligungs_id != that.bewilligungs_id) return false;
-        if (VOID != that.VOID) return false;
+        if (VO_ID != that.VO_ID) return false;
         if (BDAT != null ? !BDAT.equals(that.BDAT) : that.BDAT != null) return false;
         return BEWNR != null ? BEWNR.equals(that.BEWNR) : that.BEWNR == null;
     }
@@ -74,7 +74,7 @@ public class BewilligungEntity {
         int result = (int) (bewilligungs_id ^ (bewilligungs_id >>> 32));
         result = 31 * result + (BDAT != null ? BDAT.hashCode() : 0);
         result = 31 * result + (BEWNR != null ? BEWNR.hashCode() : 0);
-        result = 31 * result + (int) (VOID ^ (VOID >>> 32));
+        result = 31 * result + (int) (VO_ID ^ (VO_ID >>> 32));
         return result;
     }
 }
