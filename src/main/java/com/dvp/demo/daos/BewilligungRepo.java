@@ -3,8 +3,10 @@ package com.dvp.demo.daos;
 import com.dvp.demo.models.BewilligungEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public interface BewilligungRepo extends CrudRepository <BewilligungEntity,Long> {
-    public void deleteByvo_id(long vo_id);
+    @Transactional
+    public void deleteByVid(long vid);
 }

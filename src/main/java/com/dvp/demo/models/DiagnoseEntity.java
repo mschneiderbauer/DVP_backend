@@ -11,7 +11,7 @@ public class DiagnoseEntity {
 
     private Date datd;
     private String diagn;
-    private long vo_id;
+    private long vid;
 
 
     public DiagnoseEntity() {
@@ -38,8 +38,8 @@ public class DiagnoseEntity {
 
     @Basic
     @Column(name = "VO_ID")
-    public long getVo_id() {
-        return vo_id;
+    public long getVid() {
+        return vid;
     }
 
     public void setDatd(Date DATD) {
@@ -50,8 +50,8 @@ public class DiagnoseEntity {
         this.diagn = DIAGN;
     }
 
-    public void setVo_id(long VOID) {
-        this.vo_id = VOID;
+    public void setVid(long VOID) {
+        this.vid = VOID;
     }
 
 
@@ -67,7 +67,7 @@ public class DiagnoseEntity {
         DiagnoseEntity that = (DiagnoseEntity) o;
 
         if (diagnose_id != that.diagnose_id) return false;
-        if (vo_id != that.vo_id) return false;
+        if (vid != that.vid) return false;
         if (datd != null ? !datd.equals(that.datd) : that.datd != null) return false;
         return diagn != null ? diagn.equals(that.diagn) : that.diagn == null;
     }
@@ -77,7 +77,7 @@ public class DiagnoseEntity {
         int result = diagnose_id;
         result = 31 * result + (datd != null ? datd.hashCode() : 0);
         result = 31 * result + (diagn != null ? diagn.hashCode() : 0);
-        result = 31 * result + (int) (vo_id ^ (vo_id >>> 32));
+        result = 31 * result + (int) (vid ^ (vid >>> 32));
         return result;
     }
 
@@ -87,7 +87,7 @@ public class DiagnoseEntity {
                 "diagnose_id=" + diagnose_id +
                 ", DATD=" + datd +
                 ", DIAGN='" + diagn + '\'' +
-                ", VO_ID=" + vo_id +
+                ", VO_ID=" + vid +
                 '}';
     }
 }

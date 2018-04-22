@@ -12,7 +12,7 @@ public class LeistungEntity {
     private Date datl;
     private int anz;
     private String posnr;
-    private long vo_id;
+    private long vid;
 
     @Id
     @Column(name="LID")
@@ -41,8 +41,8 @@ public class LeistungEntity {
 
     @Basic
     @Column(name="VO_ID")
-    public long getVo_id() {
-        return vo_id;
+    public long getVid() {
+        return vid;
     }
 
     public void setDatl(Date DATL) {
@@ -57,8 +57,8 @@ public class LeistungEntity {
         this.posnr = POSNR;
     }
 
-    public void setVo_id(long VO_ID) {
-        this.vo_id = VO_ID;
+    public void setVid(long VO_ID) {
+        this.vid = VO_ID;
     }
 
     public void setLid(int LID) {
@@ -74,7 +74,7 @@ public class LeistungEntity {
 
         if (lid != that.lid) return false;
         if (anz != that.anz) return false;
-        if (vo_id != that.vo_id) return false;
+        if (vid != that.vid) return false;
         if (datl != null ? !datl.equals(that.datl) : that.datl != null) return false;
         return posnr != null ? posnr.equals(that.posnr) : that.posnr == null;
     }
@@ -85,7 +85,7 @@ public class LeistungEntity {
         result = 31 * result + (datl != null ? datl.hashCode() : 0);
         result = 31 * result + (int) (anz ^ (anz >>> 32));
         result = 31 * result + (posnr != null ? posnr.hashCode() : 0);
-        result = 31 * result + (int) (vo_id ^ (vo_id >>> 32));
+        result = 31 * result + (int) (vid ^ (vid >>> 32));
         return result;
     }
 }

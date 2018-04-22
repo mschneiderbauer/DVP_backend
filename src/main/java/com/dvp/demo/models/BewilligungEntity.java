@@ -11,7 +11,7 @@ public class BewilligungEntity {
 
     private String bewnr;
     private Date bdat;
-    private long vo_id;
+    private long vid;
 
     @Id
     @Column(name = "bewilligungs_id")
@@ -37,8 +37,8 @@ public class BewilligungEntity {
 
     @Basic
     @Column(name = "VO_ID")
-    public long getVo_id() {
-        return vo_id;
+    public long getVid() {
+        return vid;
     }
 
     public void setBdat(Date BDAT) {
@@ -49,8 +49,8 @@ public class BewilligungEntity {
         this.bewnr = BEWNR;
     }
 
-    public void setVo_id(long VOID) {
-        this.vo_id = VOID;
+    public void setVid(long VOID) {
+        this.vid = VOID;
     }
 
     public void setBewilligungs_id(long bewilligungs_id) {
@@ -65,7 +65,7 @@ public class BewilligungEntity {
         BewilligungEntity that = (BewilligungEntity) o;
 
         if (bewilligungs_id != that.bewilligungs_id) return false;
-        if (vo_id != that.vo_id) return false;
+        if (vid != that.vid) return false;
         if (bdat != null ? !bdat.equals(that.bdat) : that.bdat != null) return false;
         return bewnr != null ? bewnr.equals(that.bewnr) : that.bewnr == null;
     }
@@ -75,7 +75,7 @@ public class BewilligungEntity {
         int result = (int) (bewilligungs_id ^ (bewilligungs_id >>> 32));
         result = 31 * result + (bdat != null ? bdat.hashCode() : 0);
         result = 31 * result + (bewnr != null ? bewnr.hashCode() : 0);
-        result = 31 * result + (int) (vo_id ^ (vo_id >>> 32));
+        result = 31 * result + (int) (vid ^ (vid >>> 32));
         return result;
     }
 }

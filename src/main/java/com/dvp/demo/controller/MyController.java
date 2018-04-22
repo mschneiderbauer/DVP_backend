@@ -72,7 +72,7 @@ public class MyController {
     @RequestMapping(value = "/createVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public long createVerordnung(@RequestBody VerordnungEntity ve) {
         verordnungRepo.save(ve);
-        return ve.getVo_id();
+        return ve.getVid();
     }
 
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -93,8 +93,8 @@ public class MyController {
     }
 
     @RequestMapping(value = "/setSendungId", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setSendungId(@RequestBody long vo_id, long sId) {
-        VerordnungEntity ve = verordnungRepo.findOne(vo_id);
+    public void setSendungId(@RequestBody long vid, long sId) {
+        VerordnungEntity ve = verordnungRepo.findOne(vid);
         ve.setSendungid(sId);
         verordnungRepo.save(ve);
     }
@@ -108,10 +108,10 @@ public class MyController {
 
     @RequestMapping(value = "/deleteVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
-        verordnungRepo.deleteByvo_idAndKundennummer(vikc.vo_id,vikc.kundennummer);
-        bewilligungRepo.deleteByvo_id(vikc.vo_id);
-        diagnoseRepo.deleteByvo_id(vikc.vo_id);
-        leistungRepo.deleteByvo_id(vikc.vo_id);
+        verordnungRepo.deleteByVidAndKundennummer(vikc.vid,vikc.kundennummer);
+        bewilligungRepo.deleteByVid(vikc.vid);
+        diagnoseRepo.deleteByVid(vikc.vid);
+        leistungRepo.deleteByVid(vikc.vid);
     }
 
 }

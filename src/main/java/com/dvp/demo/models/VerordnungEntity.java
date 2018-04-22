@@ -7,7 +7,7 @@ import java.sql.Date;
 @Table(name = "Verordnungen", schema = "dvpdatabase")
 public class VerordnungEntity {
 
-    public long vo_id;
+    public long vid;
 
     private long kundennummer;
 
@@ -24,8 +24,8 @@ public class VerordnungEntity {
     public VerordnungEntity() {
     }
 
-    public VerordnungEntity(long vo_id, long kundennummer, int KOSTENTRAEGER_ID, long VPNRV, String ZUNAV, Date VDATUM, long vsnrp) {
-        this.vo_id = vo_id;
+    public VerordnungEntity(long vid, long kundennummer, int KOSTENTRAEGER_ID, long VPNRV, String ZUNAV, Date VDATUM, long vsnrp) {
+        this.vid = vid;
         this.kundennummer = kundennummer;
         this.kostentraeger_id = KOSTENTRAEGER_ID;
         this.vpnrv = VPNRV;
@@ -37,12 +37,12 @@ public class VerordnungEntity {
     @Id
     @Column(name = "VO_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getVo_id() {
-        return vo_id;
+    public long getVid() {
+        return vid;
     }
 
-    public void setVo_id(long vo_id) {
-        this.vo_id = vo_id;
+    public void setVid(long vo_id) {
+        this.vid = vo_id;
     }
 
     @Column(name = "kundennummer")
@@ -117,7 +117,7 @@ public class VerordnungEntity {
 
         VerordnungEntity that = (VerordnungEntity) o;
 
-        if (vo_id != that.vo_id) return false;
+        if (vid != that.vid) return false;
         if (kundennummer != that.kundennummer) return false;
         if (kostentraeger_id != that.kostentraeger_id) return false;
         if (vpnrv != that.vpnrv) return false;
@@ -129,7 +129,7 @@ public class VerordnungEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) (vo_id ^ (vo_id >>> 32));
+        int result = (int) (vid ^ (vid >>> 32));
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         result = 31 * result + kostentraeger_id;
         result = 31 * result + (int) (vpnrv ^ (vpnrv >>> 32));
