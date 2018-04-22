@@ -3,6 +3,7 @@ package com.dvp.demo.controller;
 import com.dvp.demo.daos.*;
 //import com.dvp.demo.models.PatientenEntity;
 import com.dvp.demo.models.*;
+import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -42,8 +43,9 @@ public class MyController {
     }
 
     @RequestMapping(value = "/patientById", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PatientenEntity getPatientById(@RequestBody PatientenId id) {
-        PatientenEntity pe = patientenRepo.findOne(id);
+    public PatientenEntity getPatientById(@RequestBody PatientIdContainer ct) {
+
+        PatientenEntity pe = patientenRepo.findByvsnrpAndKundennummer(ct.vsnrp,ct.kundennummer);
         return pe;
     }
 
@@ -59,9 +61,8 @@ public class MyController {
 
     @RequestMapping(value = "/createDiagnosen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createDiagnosen(@RequestBody List<DiagnoseEntity> el) {
-        for (DiagnoseEntity diagnose : el) {
-            diagnoseRepo.save(diagnose);
-        }
+        System.out.println(JSONArray.toJSONString(el));
+        diagnoseRepo.save(el);
     }
 
     @RequestMapping(value = "/createBewilligungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -70,22 +71,22 @@ public class MyController {
     }
 
     @RequestMapping(value = "/createVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public VerordnungId createVerordnung(@RequestBody VerordnungEntity ve) {
-        VerordnungEntity newVe = verordnungRepo.save(ve);
-        return newVe.getId();
+    public long createVerordnung(@RequestBody VerordnungEntity ve) {
+        verordnungRepo.save(ve);
+        return ve.getVo_id();
     }
 
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody long VSNRP, long kundennummer) {
 
-        List<VerordnungEntity> el = verordnungRepo.findByvsnrpAndId_Kundennummer(VSNRP, kundennummer);
+        List<VerordnungEntity> el = verordnungRepo.findByvsnrpAndKundennummer(VSNRP, kundennummer);
         return el;
     }
 
     @RequestMapping(value = "/getVerordnungenBysendungid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody long sendungid, long kundennummer) {
 
-        List<VerordnungEntity> el = verordnungRepo.findBysendungidAndId_Kundennummer(sendungid, kundennummer);
+        List<VerordnungEntity> el = verordnungRepo.findBysendungidAndKundennummer(sendungid, kundennummer);
         return el;
     }
 
@@ -95,8 +96,8 @@ public class MyController {
     }
 
     @RequestMapping(value = "/setSendungId", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setSendungId(@RequestBody VerordnungId vId, long sId) {
-        VerordnungEntity ve = verordnungRepo.findOne(vId);
+    public void setSendungId(@RequestBody long vo_id, long sId) {
+        VerordnungEntity ve = verordnungRepo.findOne(vo_id);
         ve.setSendungid(sId);
         verordnungRepo.save(ve);
     }

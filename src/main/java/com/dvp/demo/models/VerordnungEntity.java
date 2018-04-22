@@ -7,9 +7,11 @@ import java.sql.Date;
 @Table(name = "Verordnungen", schema = "dvpdatabase")
 public class VerordnungEntity {
 
-    public VerordnungId id;
+    public long vo_id;
 
-    private int KOSTENTRAEGER_ID;
+    private long kundennummer;
+
+    private int kostentraeger_id;
     private long VPNRV;
     private String ZUNAV;
     private Date VDATUM;
@@ -22,22 +24,35 @@ public class VerordnungEntity {
     public VerordnungEntity() {
     }
 
-    public VerordnungEntity(VerordnungId id, long VPNRV, String ZUNAV, Date VDATUM) {
-        this.id = id;
+    public VerordnungEntity(long vo_id, long kundennummer, int KOSTENTRAEGER_ID, long VPNRV, String ZUNAV, Date VDATUM, long vsnrp) {
+        this.vo_id = vo_id;
+        this.kundennummer = kundennummer;
+        this.kostentraeger_id = KOSTENTRAEGER_ID;
         this.VPNRV = VPNRV;
         this.ZUNAV = ZUNAV;
         this.VDATUM = VDATUM;
+        this.vsnrp = vsnrp;
     }
 
-    @EmbeddedId
-    public VerordnungId getId() {
-        return id;
+    @Id
+    @Column(name = "VO_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public long getVo_id() {
+        return vo_id;
     }
 
-    public void setId(VerordnungId id) {
-        this.id = id;
+    public void setVo_id(long vo_id) {
+        this.vo_id = vo_id;
     }
 
+    @Column(name = "kundennummer")
+    public long getKundennummer() {
+        return kundennummer;
+    }
+
+    public void setKundennummer(long kundennummer) {
+        this.kundennummer = kundennummer;
+    }
 
     @Basic
     @Column(name = "vpnrv")
@@ -70,13 +85,13 @@ public class VerordnungEntity {
     }
 
     @Basic
-    public int getKOSTENTRAEGER_ID() {
-        return KOSTENTRAEGER_ID;
+    public int getKostentraeger_id() {
+        return kostentraeger_id;
     }
 
 
-    public void setKOSTENTRAEGER_ID(int KOSTENTRAEGER_ID) {
-        this.KOSTENTRAEGER_ID = KOSTENTRAEGER_ID;
+    public void setKostentraeger_id(int KOSTENTRAEGER_ID) {
+        this.kostentraeger_id = KOSTENTRAEGER_ID;
     }
 
     public long getVsnrp() {
@@ -102,19 +117,21 @@ public class VerordnungEntity {
 
         VerordnungEntity that = (VerordnungEntity) o;
 
-        if (KOSTENTRAEGER_ID != that.KOSTENTRAEGER_ID) return false;
+        if (vo_id != that.vo_id) return false;
+        if (kundennummer != that.kundennummer) return false;
+        if (kostentraeger_id != that.kostentraeger_id) return false;
         if (VPNRV != that.VPNRV) return false;
         if (vsnrp != that.vsnrp) return false;
         if (sendungid != that.sendungid) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (ZUNAV != null ? !ZUNAV.equals(that.ZUNAV) : that.ZUNAV != null) return false;
         return VDATUM != null ? VDATUM.equals(that.VDATUM) : that.VDATUM == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + KOSTENTRAEGER_ID;
+        int result = (int) (vo_id ^ (vo_id >>> 32));
+        result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
+        result = 31 * result + kostentraeger_id;
         result = 31 * result + (int) (VPNRV ^ (VPNRV >>> 32));
         result = 31 * result + (ZUNAV != null ? ZUNAV.hashCode() : 0);
         result = 31 * result + (VDATUM != null ? VDATUM.hashCode() : 0);

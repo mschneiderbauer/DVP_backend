@@ -5,147 +5,145 @@ import javax.persistence.*;
 @Table(name = "Patienten", schema = "dvpdatabase")
 public class PatientenEntity { //Serializable?
 
-    @EmbeddedId
-    private PatientenId id;
 
-    private String VONAP;
-    private String ZUNAP;
-    private String STRA;
-    private int PLZL;
-    private String ORT;
-    private String LAND;
-    private int KOSTENTRAEGER_ID;
+    public long vsnrp;
 
-    private long VSNRA;
-    private String VONVS;
-    private String ZUNVS;
+    private long kundennummer;
 
-    public PatientenEntity(PatientenId id, String VONAP, String ZUNAP, String STRA, int PLZL, String ORT, String LAND, int KOSTENTRAEGER_ID, long VSNRA, String VONVS, String ZUNVS) {
-        this.id = id;
-        this.VONAP = VONAP;
-        this.ZUNAP = ZUNAP;
-        this.STRA = STRA;
-        this.PLZL = PLZL;
-        this.ORT = ORT;
-        this.LAND = LAND;
-        this.KOSTENTRAEGER_ID = KOSTENTRAEGER_ID;
-        this.VSNRA = VSNRA;
-        this.VONVS = VONVS;
-        this.ZUNVS = ZUNVS;
-    }
+    private String vonap;
+    private String zunap;
+    private String stra;
+    private int plzl;
+    private String ort;
+    private String land;
+    private int kostentraeger_id;
+
+    private long vsnra;
+    private String vonvs;
+    private String zunvs;
+
 
     public PatientenEntity() {
     }
 
-
-    public PatientenId getId() {
-        return id;
+    @Column(name = "kundennummer")
+    public long getKundennummer() {
+        return kundennummer;
     }
 
-    public void setId(PatientenId id) {
-        this.id = id;
+    public void setKundennummer(long kundennummer) {
+        this.kundennummer = kundennummer;
+    }
+
+    @Id
+    @Column(name = "VSNRP")
+    public long getVsnrp() {
+        return vsnrp;
+    }
+
+    public void setVsnrp(long VSNRP) {
+        this.vsnrp = VSNRP;
     }
 
     @Basic
     @Column(name = "VONAP")
-    public String getVONAP() {
-        return VONAP;
+    public String getVonap() {
+        return vonap;
     }
 
-    public void setVONAP(String VONAP) {
-        this.VONAP = VONAP;
+    public void setVonap(String VONAP) {
+        this.vonap = VONAP;
     }
 
     //not null
     @Column(name = "ZUNAP")
-    public String getZUNAP() {
-        return ZUNAP;
+    public String getZunap() {
+        return zunap;
     }
 
-    public void setZUNAP(String ZUNAP) {
-        this.ZUNAP = ZUNAP;
+    public void setZunap(String ZUNAP) {
+        this.zunap = ZUNAP;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "STRA")
-    public String getSTRA() {
-        return STRA;
+    public String getStra() {
+        return stra;
     }
 
-    public void setSTRA(String STRA) {
-        this.STRA = STRA;
+    public void setStra(String STRA) {
+        this.stra = STRA;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "PLZL")
-    public int getPLZL() {
-        return PLZL;
+    public int getPlzl() {
+        return plzl;
     }
 
-    public void setPLZL(int PLZL) {
-        this.PLZL = PLZL;
+    public void setPlzl(int PLZL) {
+        this.plzl = PLZL;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "ORT")
-    public String getORT() {
-        return ORT;
+    public String getOrt() {
+        return ort;
     }
 
-    public void setORT(String ORT) {
-        this.ORT = ORT;
+    public void setOrt(String ORT) {
+        this.ort = ORT;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "LAND")
-    public String getLAND() {
-        return LAND;
+    public String getLand() {
+        return land;
     }
 
-    public void setLAND(String LAND) {
-        this.LAND = LAND;
+    public void setLand(String LAND) {
+        this.land = LAND;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "kostentraeger_id")
-    public int getKOSTENTRAEGER_ID() {
-        return KOSTENTRAEGER_ID;
+    public int getKostentraeger_id() {
+        return kostentraeger_id;
     }
 
-    public void setKOSTENTRAEGER_ID(int KOSTENTRAEGER) {
-        this.KOSTENTRAEGER_ID = KOSTENTRAEGER;
+    public void setKostentraeger_id(int KOSTENTRAEGER) {
+        this.kostentraeger_id = KOSTENTRAEGER;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "VSNRA")
-    public long getVSNRA() {
-        return VSNRA;
+    public long getVsnra() {
+        return vsnra;
     }
 
-    public void setVSNRA(long VSNRA) {
-        this.VSNRA = VSNRA;
+    public void setVsnra(long VSNRA) {
+        this.vsnra = VSNRA;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "VONVS")
-    public String getVONVS() {
-        return VONVS;
+    public String getVonvs() {
+        return vonvs;
     }
 
-    public void setVONVS(String VONVS) {
-        this.VONVS = VONVS;
+    public void setVonvs(String VONVS) {
+        this.vonvs = VONVS;
     }
 
     @Basic //Null oder nicht, so schon
     @Column(name = "ZUNVS")
-    public String getZUNVS() {
-        return ZUNVS;
+    public String getZunvs() {
+        return zunvs;
     }
 
-    public void setZUNVS(String ZUNVS) {
-        this.ZUNVS = ZUNVS;
+    public void setZunvs(String ZUNVS) {
+        this.zunvs = ZUNVS;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -154,32 +152,34 @@ public class PatientenEntity { //Serializable?
 
         PatientenEntity that = (PatientenEntity) o;
 
-        if (PLZL != that.PLZL) return false;
-        if (KOSTENTRAEGER_ID != that.KOSTENTRAEGER_ID) return false;
-        if (VSNRA != that.VSNRA) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (VONAP != null ? !VONAP.equals(that.VONAP) : that.VONAP != null) return false;
-        if (ZUNAP != null ? !ZUNAP.equals(that.ZUNAP) : that.ZUNAP != null) return false;
-        if (STRA != null ? !STRA.equals(that.STRA) : that.STRA != null) return false;
-        if (ORT != null ? !ORT.equals(that.ORT) : that.ORT != null) return false;
-        if (LAND != null ? !LAND.equals(that.LAND) : that.LAND != null) return false;
-        if (VONVS != null ? !VONVS.equals(that.VONVS) : that.VONVS != null) return false;
-        return ZUNVS != null ? ZUNVS.equals(that.ZUNVS) : that.ZUNVS == null;
+        if (vsnrp != that.vsnrp) return false;
+        if (kundennummer != that.kundennummer) return false;
+        if (plzl != that.plzl) return false;
+        if (kostentraeger_id != that.kostentraeger_id) return false;
+        if (vsnra != that.vsnra) return false;
+        if (vonap != null ? !vonap.equals(that.vonap) : that.vonap != null) return false;
+        if (zunap != null ? !zunap.equals(that.zunap) : that.zunap != null) return false;
+        if (stra != null ? !stra.equals(that.stra) : that.stra != null) return false;
+        if (ort != null ? !ort.equals(that.ort) : that.ort != null) return false;
+        if (land != null ? !land.equals(that.land) : that.land != null) return false;
+        if (vonvs != null ? !vonvs.equals(that.vonvs) : that.vonvs != null) return false;
+        return zunvs != null ? zunvs.equals(that.zunvs) : that.zunvs == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (VONAP != null ? VONAP.hashCode() : 0);
-        result = 31 * result + (ZUNAP != null ? ZUNAP.hashCode() : 0);
-        result = 31 * result + (STRA != null ? STRA.hashCode() : 0);
-        result = 31 * result + PLZL;
-        result = 31 * result + (ORT != null ? ORT.hashCode() : 0);
-        result = 31 * result + (LAND != null ? LAND.hashCode() : 0);
-        result = 31 * result + KOSTENTRAEGER_ID;
-        result = 31 * result + (int) (VSNRA ^ (VSNRA >>> 32));
-        result = 31 * result + (VONVS != null ? VONVS.hashCode() : 0);
-        result = 31 * result + (ZUNVS != null ? ZUNVS.hashCode() : 0);
+        int result = (int) (vsnrp ^ (vsnrp >>> 32));
+        result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
+        result = 31 * result + (vonap != null ? vonap.hashCode() : 0);
+        result = 31 * result + (zunap != null ? zunap.hashCode() : 0);
+        result = 31 * result + (stra != null ? stra.hashCode() : 0);
+        result = 31 * result + plzl;
+        result = 31 * result + (ort != null ? ort.hashCode() : 0);
+        result = 31 * result + (land != null ? land.hashCode() : 0);
+        result = 31 * result + kostentraeger_id;
+        result = 31 * result + (int) (vsnra ^ (vsnra >>> 32));
+        result = 31 * result + (vonvs != null ? vonvs.hashCode() : 0);
+        result = 31 * result + (zunvs != null ? zunvs.hashCode() : 0);
         return result;
     }
 }

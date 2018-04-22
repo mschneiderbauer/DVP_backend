@@ -7,61 +7,62 @@ import java.sql.Date;
 @Table(name = "Leistungen", schema = "dvpdatabase")
 public class LeistungEntity {
 
-    public int LID;
+    public int lid;
 
-    private Date DATL;
-    private int ANZ;
-    private String POSNR;
-    private long VO_ID;
+    private Date datl;
+    private int anz;
+    private String posnr;
+    private long vo_id;
 
     @Id
     @Column(name="LID")
-    public int getLID() {
-        return LID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getLid() {
+        return lid;
     }
 
     @Basic
     @Column(name="DATL")
-    public Date getDATL() {
-        return DATL;
+    public Date getDatl() {
+        return datl;
     }
 
     @Basic
     @Column(name="ANZ")
-    public int getANZ() {
-        return ANZ;
+    public int getAnz() {
+        return anz;
     }
 
     @Basic
     @Column(name="POSNR")
-    public String getPOSNR() {
-        return POSNR;
+    public String getPosnr() {
+        return posnr;
     }
 
     @Basic
     @Column(name="VO_ID")
-    public long getVO_ID() {
-        return VO_ID;
+    public long getVo_id() {
+        return vo_id;
     }
 
-    public void setDATL(Date DATL) {
-        this.DATL = DATL;
+    public void setDatl(Date DATL) {
+        this.datl = DATL;
     }
 
-    public void setANZ(int ANZ) {
-        this.ANZ = ANZ;
+    public void setAnz(int ANZ) {
+        this.anz = ANZ;
     }
 
-    public void setPOSNR(String POSNR) {
-        this.POSNR = POSNR;
+    public void setPosnr(String POSNR) {
+        this.posnr = POSNR;
     }
 
-    public void setVO_ID(long VO_ID) {
-        this.VO_ID = VO_ID;
+    public void setVo_id(long VO_ID) {
+        this.vo_id = VO_ID;
     }
 
-    public void setLID(int LID) {
-        this.LID = LID;
+    public void setLid(int LID) {
+        this.lid = LID;
     }
 
     @Override
@@ -71,20 +72,20 @@ public class LeistungEntity {
 
         LeistungEntity that = (LeistungEntity) o;
 
-        if (LID != that.LID) return false;
-        if (ANZ != that.ANZ) return false;
-        if (VO_ID != that.VO_ID) return false;
-        if (DATL != null ? !DATL.equals(that.DATL) : that.DATL != null) return false;
-        return POSNR != null ? POSNR.equals(that.POSNR) : that.POSNR == null;
+        if (lid != that.lid) return false;
+        if (anz != that.anz) return false;
+        if (vo_id != that.vo_id) return false;
+        if (datl != null ? !datl.equals(that.datl) : that.datl != null) return false;
+        return posnr != null ? posnr.equals(that.posnr) : that.posnr == null;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (LID ^ (LID >>> 32));
-        result = 31 * result + (DATL != null ? DATL.hashCode() : 0);
-        result = 31 * result + (int) (ANZ ^ (ANZ >>> 32));
-        result = 31 * result + (POSNR != null ? POSNR.hashCode() : 0);
-        result = 31 * result + (int) (VO_ID ^ (VO_ID >>> 32));
+        int result = (int) (lid ^ (lid >>> 32));
+        result = 31 * result + (datl != null ? datl.hashCode() : 0);
+        result = 31 * result + (int) (anz ^ (anz >>> 32));
+        result = 31 * result + (posnr != null ? posnr.hashCode() : 0);
+        result = 31 * result + (int) (vo_id ^ (vo_id >>> 32));
         return result;
     }
 }

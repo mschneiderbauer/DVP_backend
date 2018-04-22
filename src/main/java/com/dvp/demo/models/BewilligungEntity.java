@@ -9,12 +9,13 @@ public class BewilligungEntity {
 
     public long bewilligungs_id;
 
-    private Date BDAT;
-    private String BEWNR;
-    private long VO_ID;
+    private String bewnr;
+    private Date bdat;
+    private long vo_id;
 
     @Id
     @Column(name = "bewilligungs_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getBewilligungs_id() {
         return bewilligungs_id;
     }
@@ -24,32 +25,32 @@ public class BewilligungEntity {
 
     @Basic
     @Column(name = "BDAT")
-    public Date getBDAT() {
-        return BDAT;
+    public Date getBdat() {
+        return bdat;
     }
 
     @Basic
     @Column(name = "BEWNR")
-    public String getBEWNR() {
-        return BEWNR;
+    public String getBewnr() {
+        return bewnr;
     }
 
     @Basic
     @Column(name = "VO_ID")
-    public long getVO_ID() {
-        return VO_ID;
+    public long getVo_id() {
+        return vo_id;
     }
 
-    public void setBDAT(Date BDAT) {
-        this.BDAT = BDAT;
+    public void setBdat(Date BDAT) {
+        this.bdat = BDAT;
     }
 
-    public void setBEWNR(String BEWNR) {
-        this.BEWNR = BEWNR;
+    public void setBewnr(String BEWNR) {
+        this.bewnr = BEWNR;
     }
 
-    public void setVO_ID(long VOID) {
-        this.VO_ID = VOID;
+    public void setVo_id(long VOID) {
+        this.vo_id = VOID;
     }
 
     public void setBewilligungs_id(long bewilligungs_id) {
@@ -64,17 +65,17 @@ public class BewilligungEntity {
         BewilligungEntity that = (BewilligungEntity) o;
 
         if (bewilligungs_id != that.bewilligungs_id) return false;
-        if (VO_ID != that.VO_ID) return false;
-        if (BDAT != null ? !BDAT.equals(that.BDAT) : that.BDAT != null) return false;
-        return BEWNR != null ? BEWNR.equals(that.BEWNR) : that.BEWNR == null;
+        if (vo_id != that.vo_id) return false;
+        if (bdat != null ? !bdat.equals(that.bdat) : that.bdat != null) return false;
+        return bewnr != null ? bewnr.equals(that.bewnr) : that.bewnr == null;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (bewilligungs_id ^ (bewilligungs_id >>> 32));
-        result = 31 * result + (BDAT != null ? BDAT.hashCode() : 0);
-        result = 31 * result + (BEWNR != null ? BEWNR.hashCode() : 0);
-        result = 31 * result + (int) (VO_ID ^ (VO_ID >>> 32));
+        result = 31 * result + (bdat != null ? bdat.hashCode() : 0);
+        result = 31 * result + (bewnr != null ? bewnr.hashCode() : 0);
+        result = 31 * result + (int) (vo_id ^ (vo_id >>> 32));
         return result;
     }
 }
