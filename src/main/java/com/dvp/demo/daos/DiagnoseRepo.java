@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface DiagnoseRepo extends CrudRepository<DiagnoseEntity, Integer> {
+    public void deleteByvo_id(long vo_id);
 }

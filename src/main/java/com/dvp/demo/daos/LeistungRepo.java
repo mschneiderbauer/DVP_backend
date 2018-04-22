@@ -6,4 +6,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface LeistungRepo extends CrudRepository<LeistungEntity, Integer> {
+    public void deleteByvo_id(long vo_id);
 }

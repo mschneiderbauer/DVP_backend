@@ -76,14 +76,14 @@ public class MyController {
     }
 
     @RequestMapping(value = "/getVerordnungenByVSNRP", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody long VSNRP, long kundennummer) {
-        List<VerordnungEntity> el = verordnungRepo.findByvsnrpAndKundennummer(VSNRP, kundennummer);
+    public List<VerordnungEntity> getVerordnungByVSNRP(@RequestBody PatientIdContainer pic) {
+        List<VerordnungEntity> el = verordnungRepo.findByvsnrpAndKundennummer(pic.vsnrp, pic.kundennummer);
         return el;
     }
 
     @RequestMapping(value = "/getVerordnungenBysendungid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody long sendungid, long kundennummer) {
-        List<VerordnungEntity> el = verordnungRepo.findBysendungidAndKundennummer(sendungid, kundennummer);
+    public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody SendungIdKundennummerContainer sikc) {
+        List<VerordnungEntity> el = verordnungRepo.findBysendungidAndKundennummer(sikc.sendungid, sikc.kundennummer);
         return el;
     }
 
@@ -97,6 +97,21 @@ public class MyController {
         VerordnungEntity ve = verordnungRepo.findOne(vo_id);
         ve.setSendungid(sId);
         verordnungRepo.save(ve);
+    }
+
+    @RequestMapping(value = "/setKostentraeger_id", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void setKostentraeger_id(@RequestBody KostentraegerPatientContainer kpc) {
+        PatientenEntity pe = patientenRepo.findByvsnrpAndKundennummer(kpc.vsnrp,kpc.kundennummer);
+        pe.setKostentraeger_id(kpc.kostentraeger_id);
+        patientenRepo.save(pe);
+    }
+
+    @RequestMapping(value = "/deleteVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
+        verordnungRepo.deleteByvo_idAndKundennummer(vikc.vo_id,vikc.kundennummer);
+        bewilligungRepo.deleteByvo_id(vikc.vo_id);
+        diagnoseRepo.deleteByvo_id(vikc.vo_id);
+        leistungRepo.deleteByvo_id(vikc.vo_id);
     }
 
 }

@@ -12,9 +12,9 @@ public class VerordnungEntity {
     private long kundennummer;
 
     private int kostentraeger_id;
-    private long VPNRV;
-    private String ZUNAV;
-    private Date VDATUM;
+    private long vpnrv;
+    private String zunav;
+    private Date vdatum;
 
     private long vsnrp;
 
@@ -28,9 +28,9 @@ public class VerordnungEntity {
         this.vo_id = vo_id;
         this.kundennummer = kundennummer;
         this.kostentraeger_id = KOSTENTRAEGER_ID;
-        this.VPNRV = VPNRV;
-        this.ZUNAV = ZUNAV;
-        this.VDATUM = VDATUM;
+        this.vpnrv = VPNRV;
+        this.zunav = ZUNAV;
+        this.vdatum = VDATUM;
         this.vsnrp = vsnrp;
     }
 
@@ -56,32 +56,32 @@ public class VerordnungEntity {
 
     @Basic
     @Column(name = "vpnrv")
-    public long getVPNRV() {
-        return VPNRV;
+    public long getVpnrv() {
+        return vpnrv;
     }
 
-    public void setVPNRV(long VPNRV) {
-        this.VPNRV = VPNRV;
+    public void setVpnrv(long VPNRV) {
+        this.vpnrv = VPNRV;
     }
 
     @Basic
     @Column(name = "zunav")
-    public String getZUNAV() {
-        return ZUNAV;
+    public String getZunav() {
+        return zunav;
     }
 
-    public void setZUNAV(String ZUNAV) {
-        this.ZUNAV = ZUNAV;
+    public void setZunav(String ZUNAV) {
+        this.zunav = ZUNAV;
     }
 
     @Basic
     @Column(name = "vdatum")
-    public Date getVDATUM() {
-        return VDATUM;
+    public Date getVdatum() {
+        return vdatum;
     }
 
-    public void setVDATUM(Date VDATUM) {
-        this.VDATUM = VDATUM;
+    public void setVdatum(Date VDATUM) {
+        this.vdatum = VDATUM;
     }
 
     @Basic
@@ -120,11 +120,11 @@ public class VerordnungEntity {
         if (vo_id != that.vo_id) return false;
         if (kundennummer != that.kundennummer) return false;
         if (kostentraeger_id != that.kostentraeger_id) return false;
-        if (VPNRV != that.VPNRV) return false;
+        if (vpnrv != that.vpnrv) return false;
         if (vsnrp != that.vsnrp) return false;
         if (sendungid != that.sendungid) return false;
-        if (ZUNAV != null ? !ZUNAV.equals(that.ZUNAV) : that.ZUNAV != null) return false;
-        return VDATUM != null ? VDATUM.equals(that.VDATUM) : that.VDATUM == null;
+        if (zunav != null ? !zunav.equals(that.zunav) : that.zunav != null) return false;
+        return vdatum != null ? vdatum.equals(that.vdatum) : that.vdatum == null;
     }
 
     @Override
@@ -132,9 +132,9 @@ public class VerordnungEntity {
         int result = (int) (vo_id ^ (vo_id >>> 32));
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         result = 31 * result + kostentraeger_id;
-        result = 31 * result + (int) (VPNRV ^ (VPNRV >>> 32));
-        result = 31 * result + (ZUNAV != null ? ZUNAV.hashCode() : 0);
-        result = 31 * result + (VDATUM != null ? VDATUM.hashCode() : 0);
+        result = 31 * result + (int) (vpnrv ^ (vpnrv >>> 32));
+        result = 31 * result + (zunav != null ? zunav.hashCode() : 0);
+        result = 31 * result + (vdatum != null ? vdatum.hashCode() : 0);
         result = 31 * result + (int) (vsnrp ^ (vsnrp >>> 32));
         result = 31 * result + (int) (sendungid ^ (sendungid >>> 32));
         return result;
