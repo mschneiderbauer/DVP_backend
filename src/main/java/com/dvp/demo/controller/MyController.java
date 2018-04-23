@@ -5,6 +5,7 @@ import com.dvp.demo.daos.*;
 import com.dvp.demo.models.*;
 import net.minidev.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -107,11 +108,13 @@ public class MyController {
     }
 
     @RequestMapping(value = "/deleteVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void deleteVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
+    @ResponseStatus(value = HttpStatus.OK)
+    public boolean deleteVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
         verordnungRepo.deleteByVidAndKundennummer(vikc.vid,vikc.kundennummer);
         bewilligungRepo.deleteByVid(vikc.vid);
         diagnoseRepo.deleteByVid(vikc.vid);
         leistungRepo.deleteByVid(vikc.vid);
+        return true;
     }
 
 }
