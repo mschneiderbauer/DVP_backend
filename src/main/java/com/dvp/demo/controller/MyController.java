@@ -117,4 +117,10 @@ public class MyController {
         return true;
     }
 
+    @RequestMapping(value = "/getPeriodenByKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<SendungEntity> getPeriodenByKundennummer(@RequestBody KundennummerContainer kc){
+        System.out.println(""+kc.kundennummer);
+        return sendungRepo.findBykundennummer(kc.kundennummer);
+    }
+
 }

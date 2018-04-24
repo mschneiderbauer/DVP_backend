@@ -3,7 +3,7 @@ package com.dvp.demo.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Sendungen", schema = "dvpdatabase", catalog = "")
+@Table(name = "Sendungen", schema = "dvpdatabase")
 public class SendungEntity {
 
     public long id;

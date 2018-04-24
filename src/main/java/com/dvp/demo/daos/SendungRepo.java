@@ -4,7 +4,11 @@ import com.dvp.demo.models.SendungEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface SendungRepo extends CrudRepository<SendungEntity, Long> {
     public SendungEntity findByidAndKundennummer(long id, long kundennummer);
+
+    public List<SendungEntity> findBykundennummer(long kundennummer);
 }
