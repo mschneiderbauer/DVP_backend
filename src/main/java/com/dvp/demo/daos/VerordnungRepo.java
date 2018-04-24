@@ -14,6 +14,8 @@ public interface VerordnungRepo extends CrudRepository<VerordnungEntity, Long> {
 
     public List<VerordnungEntity> findBysendungidAndKundennummer(long sendungid, long kundennummer);
 
+    public VerordnungEntity findByvidAndKundennummer(long vid, long kundennummer);
+
     @Transactional
     public void deleteByVidAndKundennummer(long vid, long kundennummer);
 }

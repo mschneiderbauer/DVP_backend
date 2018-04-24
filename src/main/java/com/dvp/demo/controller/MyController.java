@@ -94,9 +94,9 @@ public class MyController {
     }
 
     @RequestMapping(value = "/setSendungId", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setSendungId(@RequestBody long vid, long sId) {
-        VerordnungEntity ve = verordnungRepo.findOne(vid);
-        ve.setSendungid(sId);
+    public void setSendungId(@RequestBody VerordnungIdSendungContainer visc) {
+        VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(visc.vid, visc.kundennummer);
+        ve.setSendungid(visc.sid);
         verordnungRepo.save(ve);
     }
 
