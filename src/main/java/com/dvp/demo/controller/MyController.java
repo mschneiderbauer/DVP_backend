@@ -3,7 +3,7 @@ package com.dvp.demo.controller;
 import com.dvp.demo.daos.*;
 //import com.dvp.demo.models.PatientenEntity;
 import com.dvp.demo.models.*;
-import net.minidev.json.JSONArray;
+import com.dvp.demo.models.containers.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,6 +36,9 @@ public class MyController {
     @Autowired
     SendungRepo sendungRepo;
 
+    @Autowired
+    LeistungserbringerRepo leistungserbringerRepo;
+
 
     @RequestMapping(value = "/alleKostentraeger", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<KostentraegerEntity> getAlleKostentraeger() {
@@ -61,8 +64,12 @@ public class MyController {
 
     @RequestMapping(value = "/createDiagnosen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createDiagnosen(@RequestBody List<DiagnoseEntity> el) {
-        System.out.println(JSONArray.toJSONString(el));
         diagnoseRepo.save(el);
+    }
+
+    @RequestMapping(value = "/createLeistungserbringer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createLeistungserbringer(@RequestBody List<LeistungserbringerEntity> el) {
+        leistungserbringerRepo.save(el);
     }
 
     @RequestMapping(value = "/createBewilligungen", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -114,6 +121,7 @@ public class MyController {
         bewilligungRepo.deleteByVid(vikc.vid);
         diagnoseRepo.deleteByVid(vikc.vid);
         leistungRepo.deleteByVid(vikc.vid);
+        leistungserbringerRepo.deleteByVid(vikc.vid);
         return true;
     }
 
@@ -122,5 +130,35 @@ public class MyController {
         System.out.println(""+kc.kundennummer);
         return sendungRepo.findBykundennummer(kc.kundennummer);
     }
+
+    /*@RequestMapping(value = "/copyVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    public boolean copyVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
+
+        VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
+        long vid = createVerordnung(ve);
+
+        List<BewilligungEntity> be = bewilligungRepo.findByVid(vikc.vid);
+        for(BewilligungEntity b : be){
+            b.setVid(vid);
+        }
+        createBewilligungen(be);
+
+        List<DiagnoseEntity> de = diagnoseRepo.findByVid(vikc.vid);
+        for(DiagnoseEntity d : de){
+            d.setVid(vid);
+        }
+        createDiagnosen(de);
+
+        List<LeistungserbringerEntity> le =  leistungserbringerRepo.findByVid(vikc.vid);
+        for(LeistungserbringerEntity l : le){
+            l.setVid(vid);
+        }
+        createLeistungserbringer(le);
+
+        return true;
+    }*/
+
+
 
 }

@@ -9,4 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface LeistungRepo extends CrudRepository<LeistungEntity, Integer> {
     @Transactional
     public void deleteByVid(long vid);
+
+    public LeistungEntity findByVid(long vid);
 }

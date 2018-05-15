@@ -1,4 +1,4 @@
-package com.dvp.demo.models;
+package com.dvp.demo.models.containers;
 
 public class KostentraegerPatientContainer {
  public int kostentraeger_id;

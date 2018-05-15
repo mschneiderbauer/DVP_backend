@@ -11,6 +11,8 @@ public class SendungEntity {
 
     private String periode;
 
+    private int abgeschlossen;
+
     @Id
     @Column(name = "sendung_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +43,16 @@ public class SendungEntity {
         this.periode = periode;
     }
 
+    @Basic
+    @Column(name = "abgeschlossen")
+    public int getAbgeschlossen() {
+        return abgeschlossen;
+    }
+
+    public void setAbgeschlossen(int abgeschlossen) {
+        this.abgeschlossen = abgeschlossen;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,6 +62,7 @@ public class SendungEntity {
 
         if (id != that.id) return false;
         if (kundennummer != that.kundennummer) return false;
+        if (abgeschlossen != that.abgeschlossen) return false;
         return periode != null ? periode.equals(that.periode) : that.periode == null;
     }
 
@@ -58,6 +71,7 @@ public class SendungEntity {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         result = 31 * result + (periode != null ? periode.hashCode() : 0);
+        result = 31 * result + abgeschlossen;
         return result;
     }
 }
