@@ -131,6 +131,17 @@ public class MyController {
         return sendungRepo.findBykundennummer(kc.kundennummer);
     }
 
+    @RequestMapping(value = "/getVerordnungContainer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public VerordnungContainer getVerordnungcontainer(@RequestBody VerordnungIdKundennummerContainer vikc){
+        VerordnungContainer vc = new VerordnungContainer();
+        vc.bewilligungEntities = bewilligungRepo.findByVid(vikc.vid);
+        vc.diagnoseEntities = diagnoseRepo.findByVid(vikc.vid);
+        vc.leistungEntities = leistungRepo.findByVid(vikc.vid);
+        vc.leistungserbringerEntities = leistungserbringerRepo.findByVid(vikc.vid);
+        vc.verordnungEntity = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
+        return vc;
+    }
+
     /*@RequestMapping(value = "/copyVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public boolean copyVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
