@@ -132,12 +132,29 @@ public class MyController {
     }
 
     @RequestMapping(value = "/getVerordnungContainer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public VerordnungContainer getVerordnungcontainer(@RequestBody VerordnungIdKundennummerContainer vikc){
+    public VerordnungContainer getVerordnungContainer(@RequestBody VerordnungIdKundennummerContainer vikc){
+
         VerordnungContainer vc = new VerordnungContainer();
+
         vc.bewilligungEntities = bewilligungRepo.findByVid(vikc.vid);
+        for(BewilligungEntity b : vc.bewilligungEntities){
+            b.setVid(0);
+        }
         vc.diagnoseEntities = diagnoseRepo.findByVid(vikc.vid);
+        for(DiagnoseEntity d : vc.diagnoseEntities){
+            d.setVid(0);
+        }
+
         vc.leistungEntities = leistungRepo.findByVid(vikc.vid);
+        for(LeistungEntity l : vc.leistungEntities){
+            l.setVid(0);
+        }
+
         vc.leistungserbringerEntities = leistungserbringerRepo.findByVid(vikc.vid);
+        for(LeistungserbringerEntity l : vc.leistungserbringerEntities){
+            l.setVid(0);
+        }
+
         vc.verordnungEntity = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
         return vc;
     }
