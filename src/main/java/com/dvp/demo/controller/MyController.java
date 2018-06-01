@@ -136,26 +136,27 @@ public class MyController {
 
         VerordnungContainer vc = new VerordnungContainer();
 
-        vc.bewilligungEntities = bewilligungRepo.findByVid(vikc.vid);
-        for(BewilligungEntity b : vc.bewilligungEntities){
-            b.setVid(0);
-        }
-        vc.diagnoseEntities = diagnoseRepo.findByVid(vikc.vid);
-        for(DiagnoseEntity d : vc.diagnoseEntities){
-            d.setVid(0);
-        }
+        vc.bewilligungen = bewilligungRepo.findByvid(vikc.vid);
+//        for(int i = 0; i< vc.bewilligungen.size(); i++){
+//            vc.bewilligungen.get(i).setVid(0);
+//        }
+        vc.diagnosen = diagnoseRepo.findByvid(vikc.vid);
+//        for(int i = 0; i< vc.diagnosen.size(); i++){
+//            vc.diagnosen.get(i).setVid(0);
+//        }
 
-        vc.leistungEntities = leistungRepo.findByVid(vikc.vid);
-        for(LeistungEntity l : vc.leistungEntities){
-            l.setVid(0);
-        }
+        vc.leistungen = leistungRepo.findByvid(vikc.vid);
+//        for(int i = 0; i< vc.leistungen.size(); i++){
+//            vc.leistungen.get(i).setVid(0);
+//        }
 
-        vc.leistungserbringerEntities = leistungserbringerRepo.findByVid(vikc.vid);
-        for(LeistungserbringerEntity l : vc.leistungserbringerEntities){
-            l.setVid(0);
-        }
+        vc.leistungserbringer = leistungserbringerRepo.findByvid(vikc.vid);
+//        for(int i = 0; i< vc.leistungserbringer.size(); i++){
+//            vc.leistungserbringer.get(i).setVid(0);
+//        }
 
-        vc.verordnungEntity = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
+        vc.vo = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
+        System.out.println(vc.toString());
         return vc;
     }
 
@@ -166,19 +167,19 @@ public class MyController {
         VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
         long vid = createVerordnung(ve);
 
-        List<BewilligungEntity> be = bewilligungRepo.findByVid(vikc.vid);
+        List<BewilligungEntity> be = bewilligungRepo.findByvid(vikc.vid);
         for(BewilligungEntity b : be){
             b.setVid(vid);
         }
         createBewilligungen(be);
 
-        List<DiagnoseEntity> de = diagnoseRepo.findByVid(vikc.vid);
+        List<DiagnoseEntity> de = diagnoseRepo.findByvid(vikc.vid);
         for(DiagnoseEntity d : de){
             d.setVid(vid);
         }
         createDiagnosen(de);
 
-        List<LeistungserbringerEntity> le =  leistungserbringerRepo.findByVid(vikc.vid);
+        List<LeistungserbringerEntity> le =  leistungserbringerRepo.findByvid(vikc.vid);
         for(LeistungserbringerEntity l : le){
             l.setVid(vid);
         }

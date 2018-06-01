@@ -12,5 +12,5 @@ public interface LeistungRepo extends CrudRepository<LeistungEntity, Integer> {
     @Transactional
     public void deleteByVid(long vid);
 
-    public List<LeistungEntity> findByVid(long vid);
+    public List<LeistungEntity> findByvid(long vid);
 }

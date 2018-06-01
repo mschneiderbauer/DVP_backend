@@ -12,5 +12,5 @@ public interface DiagnoseRepo extends CrudRepository<DiagnoseEntity, Integer> {
     @Transactional
     public void deleteByVid(long vid);
 
-    public List<DiagnoseEntity> findByVid(long vid);
+    public List<DiagnoseEntity> findByvid(long vid);
 }

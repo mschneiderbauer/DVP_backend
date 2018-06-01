@@ -12,5 +12,5 @@ public interface LeistungserbringerRepo extends CrudRepository<Leistungserbringe
     @Transactional
     public void deleteByVid(long vid);
 
-    public List<LeistungserbringerEntity> findByVid(long vid);
+    public List<LeistungserbringerEntity> findByvid(long vid);
 }

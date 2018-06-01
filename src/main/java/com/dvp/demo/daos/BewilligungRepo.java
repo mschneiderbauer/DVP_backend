@@ -12,5 +12,5 @@ public interface BewilligungRepo extends CrudRepository <BewilligungEntity,Long>
     @Transactional
     public void deleteByVid(long vid);
 
-    public List<BewilligungEntity> findByVid(long vid);
+    public List<BewilligungEntity> findByvid(long vid);
 }
