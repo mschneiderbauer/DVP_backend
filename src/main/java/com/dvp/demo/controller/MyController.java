@@ -89,9 +89,9 @@ public class MyController {
         return el;
     }
 
-    @RequestMapping(value = "/getVerordnungenBysendungid", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<VerordnungEntity> getVerordnungBysendungid(@RequestBody SendungIdKundennummerContainer sikc) {
-        List<VerordnungEntity> el = verordnungRepo.findBysendungidAndKundennummer(sikc.sendungid, sikc.kundennummer);
+    @RequestMapping(value = "/getVerordnungenByPeriodeAndKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<VerordnungEntity> getVerordnungByPeriodeAndKundennummer(@RequestBody PeriodeKundennummerContainer pkc) {
+        List<VerordnungEntity> el = verordnungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
         return el;
     }
 
@@ -100,10 +100,10 @@ public class MyController {
         sendungRepo.save(se);
     }
 
-    @RequestMapping(value = "/setSendungId", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setSendungId(@RequestBody VerordnungIdSendungContainer visc) {
+    @RequestMapping(value = "/setPeriode", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void setPeriode(@RequestBody VerordnungIdSendungContainer visc) {
         VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(visc.vid, visc.kundennummer);
-        ve.setSendungid(visc.sid);
+        ve.setPeriode(visc.periode);
         verordnungRepo.save(ve);
     }
 
@@ -129,6 +129,11 @@ public class MyController {
     public List<SendungEntity> getPeriodenByKundennummer(@RequestBody KundennummerContainer kc){
         System.out.println(""+kc.kundennummer);
         return sendungRepo.findBykundennummer(kc.kundennummer);
+    }
+
+    @RequestMapping(value = "/getSendungenByPeriodeAndKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<SendungEntity> getSendungByPeriodeAndKundennummer(@RequestBody PeriodeKundennummerContainer pkc){
+        return sendungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
     }
 
     @RequestMapping(value = "/getVerordnungContainer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

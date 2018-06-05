@@ -8,7 +8,8 @@ import java.util.List;
 
 @Service
 public interface SendungRepo extends CrudRepository<SendungEntity, Long> {
-    public SendungEntity findByidAndKundennummer(long id, long kundennummer);
+
+    public List<SendungEntity> findByperiodeAndKundennummer(String periode, long kundennummer);
 
     public List<SendungEntity> findBykundennummer(long kundennummer);
 }

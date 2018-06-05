@@ -1,6 +1,7 @@
 package com.dvp.demo.models.containers;
 
 public class VerordnungIdSendungContainer {
-    public long kundennummer, sid, vid;
+    public long kundennummer, vid;
+    public String periode;
 
 }

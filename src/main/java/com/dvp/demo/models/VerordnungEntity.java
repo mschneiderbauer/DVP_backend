@@ -18,7 +18,7 @@ public class VerordnungEntity {
 
     private long vsnrp;
 
-    private long sendungid;
+    private String periode;
 
 
     public VerordnungEntity() {
@@ -102,12 +102,14 @@ public class VerordnungEntity {
         this.vsnrp = VSNRP;
     }
 
-    public long getSendungid() {
-        return sendungid;
+    @Basic
+    @Column(name = "periode")
+    public String getPeriode() {
+        return periode;
     }
 
-    public void setSendungid(long sendung_id) {
-        this.sendungid = sendung_id;
+    public void setPeriode(String periode) {
+        this.periode = periode;
     }
 
     @Override
@@ -122,9 +124,9 @@ public class VerordnungEntity {
         if (kostentraeger_id != that.kostentraeger_id) return false;
         if (vpnrv != that.vpnrv) return false;
         if (vsnrp != that.vsnrp) return false;
-        if (sendungid != that.sendungid) return false;
         if (zunav != null ? !zunav.equals(that.zunav) : that.zunav != null) return false;
-        return vdatum != null ? vdatum.equals(that.vdatum) : that.vdatum == null;
+        if (vdatum != null ? !vdatum.equals(that.vdatum) : that.vdatum != null) return false;
+        return periode != null ? periode.equals(that.periode) : that.periode == null;
     }
 
     @Override
@@ -136,7 +138,7 @@ public class VerordnungEntity {
         result = 31 * result + (zunav != null ? zunav.hashCode() : 0);
         result = 31 * result + (vdatum != null ? vdatum.hashCode() : 0);
         result = 31 * result + (int) (vsnrp ^ (vsnrp >>> 32));
-        result = 31 * result + (int) (sendungid ^ (sendungid >>> 32));
+        result = 31 * result + (periode != null ? periode.hashCode() : 0);
         return result;
     }
 }

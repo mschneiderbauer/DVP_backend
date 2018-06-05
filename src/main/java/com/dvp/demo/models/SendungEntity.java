@@ -6,22 +6,18 @@ import javax.persistence.*;
 @Table(name = "Sendungen", schema = "dvpdatabase")
 public class SendungEntity {
 
-    public long id;
-    private long kundennummer;
-
     private String periode;
+    private long kundennummer;
 
     private int abgeschlossen;
 
-    @Id
-    @Column(name = "sendung_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getId() {
-        return id;
+    public SendungEntity() {
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public SendungEntity(String periode, long kundennummer) {
+        this.periode = periode;
+        this.kundennummer = kundennummer;
+        this.abgeschlossen = 0;
     }
 
     @Column(name = "kundennummer")
@@ -33,7 +29,7 @@ public class SendungEntity {
         this.kundennummer = kundennummer;
     }
 
-    @Basic
+    @Id
     @Column(name = "periode")
     public String getPeriode() {
         return periode;
@@ -60,7 +56,6 @@ public class SendungEntity {
 
         SendungEntity that = (SendungEntity) o;
 
-        if (id != that.id) return false;
         if (kundennummer != that.kundennummer) return false;
         if (abgeschlossen != that.abgeschlossen) return false;
         return periode != null ? periode.equals(that.periode) : that.periode == null;
@@ -68,9 +63,8 @@ public class SendungEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
+        int result = periode != null ? periode.hashCode() : 0;
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
-        result = 31 * result + (periode != null ? periode.hashCode() : 0);
         result = 31 * result + abgeschlossen;
         return result;
     }
