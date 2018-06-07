@@ -1,6 +1,7 @@
 package com.dvp.demo.models;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "Sendungen", schema = "dvpdatabase")
@@ -9,7 +10,9 @@ public class SendungEntity {
     private String periode;
     private long kundennummer;
 
-    private int abgeschlossen;
+    private int status;
+
+    private Timestamp datum;
 
     public SendungEntity() {
     }
@@ -17,7 +20,7 @@ public class SendungEntity {
     public SendungEntity(String periode, long kundennummer) {
         this.periode = periode;
         this.kundennummer = kundennummer;
-        this.abgeschlossen = 0;
+        this.status = 0;
     }
 
     @Column(name = "kundennummer")
@@ -40,13 +43,23 @@ public class SendungEntity {
     }
 
     @Basic
-    @Column(name = "abgeschlossen")
-    public int getAbgeschlossen() {
-        return abgeschlossen;
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
     }
 
-    public void setAbgeschlossen(int abgeschlossen) {
-        this.abgeschlossen = abgeschlossen;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    @Basic
+    @Column(name = "datum")
+    public Timestamp getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Timestamp datum) {
+        this.datum = datum;
     }
 
     @Override
@@ -57,15 +70,17 @@ public class SendungEntity {
         SendungEntity that = (SendungEntity) o;
 
         if (kundennummer != that.kundennummer) return false;
-        if (abgeschlossen != that.abgeschlossen) return false;
-        return periode != null ? periode.equals(that.periode) : that.periode == null;
+        if (status != that.status) return false;
+        if (periode != null ? !periode.equals(that.periode) : that.periode != null) return false;
+        return datum != null ? datum.equals(that.datum) : that.datum == null;
     }
 
     @Override
     public int hashCode() {
         int result = periode != null ? periode.hashCode() : 0;
         result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
-        result = 31 * result + abgeschlossen;
+        result = 31 * result + status;
+        result = 31 * result + (datum != null ? datum.hashCode() : 0);
         return result;
     }
 }

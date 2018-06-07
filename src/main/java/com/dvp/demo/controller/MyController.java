@@ -9,6 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
 
 @CrossOrigin(value = "http://localhost:**")
@@ -96,8 +99,10 @@ public class MyController {
     }
 
     @RequestMapping(value = "/createSendung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createSendung(@RequestBody SendungEntity se) {
+    public boolean createSendung(@RequestBody SendungEntity se) {
+        se.setDatum(new Timestamp(new java.util.Date().getTime()));
         sendungRepo.save(se);
+        return true;
     }
 
     @RequestMapping(value = "/setPeriode", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -128,12 +133,15 @@ public class MyController {
     @RequestMapping(value = "/getPeriodenByKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<SendungEntity> getPeriodenByKundennummer(@RequestBody KundennummerContainer kc){
         System.out.println(""+kc.kundennummer);
-        return sendungRepo.findBykundennummer(kc.kundennummer);
+        return sendungRepo.findBykundennummerOrderByDatumDesc(kc.kundennummer);
     }
 
-    @RequestMapping(value = "/getSendungenByPeriodeAndKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<SendungEntity> getSendungByPeriodeAndKundennummer(@RequestBody PeriodeKundennummerContainer pkc){
-        return sendungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
+    @RequestMapping(value = "/completeSendung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public boolean completeSendung(@RequestBody PeriodeKundennummerContainer pkc){
+        SendungEntity se = sendungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
+        se.setStatus(1);
+        //Verordnungen auch deaktivieren
+        return true;
     }
 
     @RequestMapping(value = "/getVerordnungContainer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -142,24 +150,9 @@ public class MyController {
         VerordnungContainer vc = new VerordnungContainer();
 
         vc.bewilligungen = bewilligungRepo.findByvid(vikc.vid);
-//        for(int i = 0; i< vc.bewilligungen.size(); i++){
-//            vc.bewilligungen.get(i).setVid(0);
-//        }
         vc.diagnosen = diagnoseRepo.findByvid(vikc.vid);
-//        for(int i = 0; i< vc.diagnosen.size(); i++){
-//            vc.diagnosen.get(i).setVid(0);
-//        }
-
         vc.leistungen = leistungRepo.findByvid(vikc.vid);
-//        for(int i = 0; i< vc.leistungen.size(); i++){
-//            vc.leistungen.get(i).setVid(0);
-//        }
-
         vc.leistungserbringer = leistungserbringerRepo.findByvid(vikc.vid);
-//        for(int i = 0; i< vc.leistungserbringer.size(); i++){
-//            vc.leistungserbringer.get(i).setVid(0);
-//        }
-
         vc.vo = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
         System.out.println(vc.toString());
         return vc;
