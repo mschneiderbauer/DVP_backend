@@ -133,8 +133,12 @@ public class MyController {
 
     @RequestMapping(value = "/getPeriodenByKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<SendungEntity> getPeriodenByKundennummer(@RequestBody KundennummerContainer kc){
-        System.out.println(""+kc.kundennummer);
         return sendungRepo.findBykundennummerOrderByDatumDesc(kc.kundennummer);
+    }
+
+    @RequestMapping(value = "/getOffenePerioden", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<SendungEntity> getOffenePerioden(@RequestBody KundennummerContainer kc){
+        return sendungRepo.findBykundennummerAndStatusEqualsOrderByDatumDesc(kc.kundennummer,0);
     }
 
     @RequestMapping(value = "/completeSendung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

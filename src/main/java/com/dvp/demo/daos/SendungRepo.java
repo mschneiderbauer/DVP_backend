@@ -12,4 +12,6 @@ public interface SendungRepo extends CrudRepository<SendungEntity, Long> {
     public SendungEntity findByperiodeAndKundennummer(String periode, long kundennummer);
 
     public List<SendungEntity> findBykundennummerOrderByDatumDesc(long kundennummer);
+
+    public List<SendungEntity> findBykundennummerAndStatusEqualsOrderByDatumDesc(long kundennummer, int status);
 }
