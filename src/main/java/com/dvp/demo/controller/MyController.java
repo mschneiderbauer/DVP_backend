@@ -92,6 +92,12 @@ public class MyController {
         return el;
     }
 
+    @RequestMapping(value = "/getSendung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public SendungEntity getSendung(@RequestBody PeriodeKundennummerContainer pkc) {
+       SendungEntity se = sendungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
+       return se;
+    }
+
     @RequestMapping(value = "/getVerordnungenByPeriodeAndKundennummer", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public List<VerordnungEntity> getVerordnungByPeriodeAndKundennummer(@RequestBody PeriodeKundennummerContainer pkc) {
         List<VerordnungEntity> el = verordnungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
