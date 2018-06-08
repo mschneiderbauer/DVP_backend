@@ -106,10 +106,11 @@ public class MyController {
     }
 
     @RequestMapping(value = "/setPeriode", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void setPeriode(@RequestBody VerordnungIdSendungContainer visc) {
+    public boolean setPeriode(@RequestBody VerordnungIdSendungContainer visc) {
         VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(visc.vid, visc.kundennummer);
         ve.setPeriode(visc.periode);
         verordnungRepo.save(ve);
+        return true;
     }
 
     @RequestMapping(value = "/setKostentraeger_id", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -140,7 +141,12 @@ public class MyController {
     public boolean completeSendung(@RequestBody PeriodeKundennummerContainer pkc){
         SendungEntity se = sendungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
         se.setStatus(1);
-        //Verordnungen auch deaktivieren
+        List<VerordnungEntity> vl = verordnungRepo.findByperiodeAndKundennummer(pkc.periode, pkc.kundennummer);
+        for(int i = 0; i<vl.size(); i++){
+            vl.get(i).setStatus(1);
+        }
+        verordnungRepo.save(vl);
+
         return true;
     }
 

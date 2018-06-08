@@ -20,6 +20,8 @@ public class VerordnungEntity {
 
     private String periode;
 
+    private int status;
+
 
     public VerordnungEntity() {
     }
@@ -103,7 +105,15 @@ public class VerordnungEntity {
     }
 
     @Basic
-    @Column(name = "periode")
+    @Column(name = "status")
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public String getPeriode() {
         return periode;
     }
@@ -124,6 +134,7 @@ public class VerordnungEntity {
         if (kostentraeger_id != that.kostentraeger_id) return false;
         if (vpnrv != that.vpnrv) return false;
         if (vsnrp != that.vsnrp) return false;
+        if (status != that.status) return false;
         if (zunav != null ? !zunav.equals(that.zunav) : that.zunav != null) return false;
         if (vdatum != null ? !vdatum.equals(that.vdatum) : that.vdatum != null) return false;
         return periode != null ? periode.equals(that.periode) : that.periode == null;
@@ -139,6 +150,7 @@ public class VerordnungEntity {
         result = 31 * result + (vdatum != null ? vdatum.hashCode() : 0);
         result = 31 * result + (int) (vsnrp ^ (vsnrp >>> 32));
         result = 31 * result + (periode != null ? periode.hashCode() : 0);
+        result = 31 * result + status;
         return result;
     }
 }
