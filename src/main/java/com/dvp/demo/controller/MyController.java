@@ -183,8 +183,9 @@ public class MyController {
 
         vc.bewilligungen = bewilligungRepo.findByvid(vikc.vid);
         if(vc.bewilligungen!=null&&!vc.bewilligungen.isEmpty()) {
-            for (int i = 0; i < vc.leistungserbringer.size(); i++) {
+            for (int i = 0; i < vc.bewilligungen.size(); i++) {
                 vc.bewilligungen.get(i).setVid(0);
+                vc.bewilligungen.get(i).setBewilligungs_id(0);
             }
         }
 
@@ -192,6 +193,7 @@ public class MyController {
         if(vc.diagnosen!=null&&!vc.diagnosen.isEmpty()) {
             for (int i = 0; i < vc.diagnosen.size(); i++) {
                 vc.diagnosen.get(i).setVid(0);
+                vc.diagnosen.get(i).setDiagnose_id(0);
             }
         }
 
@@ -201,6 +203,7 @@ public class MyController {
         if(vc.leistungserbringer!=null&&!vc.leistungserbringer.isEmpty()) {
             for (int i = 0; i < vc.leistungserbringer.size(); i++) {
                 vc.leistungserbringer.get(i).setVid(0);
+                vc.leistungserbringer.get(i).setLeid(0);
             }
         }
 
