@@ -8,8 +8,6 @@ public class LeistungserbringerEntity {
 
     public long leid;
 
-    private long kundennummer;
-
     private long vpnrt;
 
     private String ZUNUT;
@@ -47,14 +45,6 @@ public class LeistungserbringerEntity {
         this.vpnrt = vpnrt;
     }
 
-    @Column(name = "kundennummer")
-    public long getKundennummer() {
-        return kundennummer;
-    }
-
-    public void setKundennummer(long kundennummer) {
-        this.kundennummer = kundennummer;
-    }
 
     @Basic
     @Column(name = "ZUNUT")
@@ -75,7 +65,7 @@ public class LeistungserbringerEntity {
 
         if (leid != that.leid) return false;
         if (vpnrt != that.vpnrt) return false;
-        if (kundennummer != that.kundennummer) return false;
+        if (vid != that.vid) return false;
         return ZUNUT != null ? ZUNUT.equals(that.ZUNUT) : that.ZUNUT == null;
     }
 
@@ -83,8 +73,8 @@ public class LeistungserbringerEntity {
     public int hashCode() {
         int result = (int) (leid ^ (leid >>> 32));
         result = 31 * result + (int) (vpnrt ^ (vpnrt >>> 32));
-        result = 31 * result + (int) (kundennummer ^ (kundennummer >>> 32));
         result = 31 * result + (ZUNUT != null ? ZUNUT.hashCode() : 0);
+        result = 31 * result + (int) (vid ^ (vid >>> 32));
         return result;
     }
 }
