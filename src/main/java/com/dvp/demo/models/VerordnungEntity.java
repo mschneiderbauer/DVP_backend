@@ -87,6 +87,7 @@ public class VerordnungEntity {
     }
 
     @Basic
+    @Column(name = "kostentraeger_id")
     public int getKostentraeger_id() {
         return kostentraeger_id;
     }
