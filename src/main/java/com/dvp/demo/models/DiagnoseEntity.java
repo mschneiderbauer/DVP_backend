@@ -13,7 +13,6 @@ public class DiagnoseEntity {
     private String diagn;
     private long vid;
 
-
     public DiagnoseEntity() {
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.LinkedList;
 import java.util.List;
 
 @CrossOrigin(value = "http://localhost:**")
@@ -174,33 +175,42 @@ public class MyController {
         return vc;
     }
 
-    /*@RequestMapping(value = "/copyVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/copyVerordnung", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
-    public boolean copyVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
+    public VerordnungContainer copyVerordnung(@RequestBody VerordnungIdKundennummerContainer vikc) {
 
-        VerordnungEntity ve = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
-        long vid = createVerordnung(ve);
+        VerordnungContainer vc = new VerordnungContainer();
 
-        List<BewilligungEntity> be = bewilligungRepo.findByvid(vikc.vid);
-        for(BewilligungEntity b : be){
-            b.setVid(vid);
+        vc.bewilligungen = bewilligungRepo.findByvid(vikc.vid);
+        if(vc.bewilligungen!=null&&!vc.bewilligungen.isEmpty()) {
+            for (int i = 0; i < vc.leistungserbringer.size(); i++) {
+                vc.bewilligungen.get(i).setVid(0);
+            }
         }
-        createBewilligungen(be);
 
-        List<DiagnoseEntity> de = diagnoseRepo.findByvid(vikc.vid);
-        for(DiagnoseEntity d : de){
-            d.setVid(vid);
+        vc.diagnosen = diagnoseRepo.findByvid(vikc.vid);
+        if(vc.diagnosen!=null&&!vc.diagnosen.isEmpty()) {
+            for (int i = 0; i < vc.diagnosen.size(); i++) {
+                vc.diagnosen.get(i).setVid(0);
+            }
         }
-        createDiagnosen(de);
 
-        List<LeistungserbringerEntity> le =  leistungserbringerRepo.findByvid(vikc.vid);
-        for(LeistungserbringerEntity l : le){
-            l.setVid(vid);
+        vc.leistungen = null; //werden nicht kopiert
+
+        vc.leistungserbringer = leistungserbringerRepo.findByvid(vikc.vid);
+        if(vc.leistungserbringer!=null&&!vc.leistungserbringer.isEmpty()) {
+            for (int i = 0; i < vc.leistungserbringer.size(); i++) {
+                vc.leistungserbringer.get(i).setVid(0);
+            }
         }
-        createLeistungserbringer(le);
 
-        return true;
-    }*/
+        vc.vo = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
+        if(vc.vo!=null) {
+            vc.vo.setVid(0);
+        }
+
+        return vc;
+    }
 
 
 
