@@ -209,6 +209,7 @@ public class MyController {
 
         vc.vo = verordnungRepo.findByvidAndKundennummer(vikc.vid,vikc.kundennummer);
         if(vc.vo!=null) {
+            vc.vo = new VerordnungEntity();
             vc.vo.setVid(0);
         }
 
